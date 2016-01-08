@@ -217,6 +217,9 @@ a {
   position: absolute;
   width: 100%;
   background: #35292d;
+  background-image: url("/assets/headerBg.png");
+  background-repeat: no-repeat;
+  background-postion: center center;
 }
 #container #mobile-nav .overlay.fixed {
   position: fixed;
@@ -492,6 +495,7 @@ a {
     bottom: 0px;
     text-shadow: none;
     color: #f1f1f1;
+    opacity: 1;
     clear: both;
   }
   #container #footer .footer-left {
