@@ -1189,7 +1189,8 @@ a {
   background: none;
 }
 .article-meta-total {
-  width: 100%;
+  width: auto;
+  float: left;
   height: 20px;
   line-height: 2;
   margin-bottom: 20px;
