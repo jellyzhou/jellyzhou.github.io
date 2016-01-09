@@ -587,8 +587,10 @@ a {
   cursor: default;
 }
 #header .header-menu li a {
-  font-size: 16px;
+  font-size: 14px;
   min-width: 300px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei";
 }
 #header .switch-area {
   position: relative;
