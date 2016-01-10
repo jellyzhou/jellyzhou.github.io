@@ -1,6 +1,7 @@
 require([], function (){
 	var $main = $('.mid-col'),
 		$document = $(document),
+		$window = $(window),
 		isMobileInit = false;
 	var loadMobile = function(){
 		require(['/js/mobile.js'], function(mobile){
@@ -35,17 +36,35 @@ require([], function (){
 	    }()
 	}
 
-	$(window).bind("resize", function(){
+	$window.bind("resize", function(){
 		if(isMobileInit && isPCInit){
-			$(window).unbind("resize");
+			$window.unbind("resize");
 			return;
 		}
-		var w = $(window).width();
+		var w = $window.width();
 		if(w >= 700){
 			loadPC();
 		}else{
 			loadMobile();
 		}
+	})
+	.on('load', function(){
+		$document.pjax("a[data-pjax]", ".mid-col")
+		.on("pjax:timeout", function(event) {
+			event.preventDefault()
+		})
+		.on('pjax:click', function(){		
+			NProgress.start();
+			$main.fadeOut(5000);
+		})
+		.on("pjax:start", function() {		
+		})
+		.on("pjax:send", function(){
+			$main.fadeTo(500, 0);
+		})
+		.on("pjax:end", function(){
+			NProgress.done();
+		});
 	});
 
 	if(browser.versions.mobile === true || $(window).width() < 700){
@@ -107,22 +126,4 @@ require([], function (){
 	if(yiliaConfig.open_in_new == true){
 		$(".article a[href]").attr("target", "_blank")
 	}
-	
-	
-	$document.pjax("a[data-pjax]", ".mid-col")
-	.on("pjax:timeout", function(event) {
-		event.preventDefault()
-	})
-	.on('pjax:click', function(){		
-		NProgress.start();
-		$main.fadeOut();
-	})
-	.on("pjax:start", function() {		
-	})
-	.on("pjax:send", function(){
-		$main.fadeTo(500, 0);
-	})
-	.on("pjax:end", function(){
-		NProgress.done();
-	});
 });
