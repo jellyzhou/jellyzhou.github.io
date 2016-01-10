@@ -1,6 +1,7 @@
 require([], function (){
-
-	var isMobileInit = false;
+	var $main = $('.mid-col'),
+		$document = $(document),
+		isMobileInit = false;
 	var loadMobile = function(){
 		require(['/js/mobile.js'], function(mobile){
 			mobile.init();
@@ -107,4 +108,21 @@ require([], function (){
 		$(".article a[href]").attr("target", "_blank")
 	}
 	
+	
+	$document.pjax("a[data-pjax]", ".mid-col")
+	.on("pjax:timeout", function(event) {
+		event.preventDefault()
+	})
+	.on('pjax:click', function(){		
+		NProgress.start();
+		$main.fadeOut();
+	})
+	.on("pjax:start", function() {		
+	})
+	.on("pjax:send", function(){
+		$main.fadeTo(500, 0);
+	})
+	.on("pjax:end", function(){
+		NProgress.done();
+	});
 });
