@@ -1033,9 +1033,10 @@ a {
   border-top: 1px solid #ddd;*/
 }
 .article-info-post.article-info {
+  float: left;
   padding: 0;
   border: none;
-  margin: -30px 0 20px 30px;
+  margin: 0px 0 20px 0px;
 }
 .article-entry {
   line-height: 1.8em;
@@ -1191,13 +1192,12 @@ a {
 .article-meta-total {
   width: auto;
   float: left;
-  height: 20px;
-  line-height: 2;
   margin-bottom: 20px;
 }
 .article-meta {
   float: left;
-  width: 150px;
+  width: auto;
+  padding-right: 30px;
   font-size: 12px;
   margin-bottom: 20px;
   text-align: left;
@@ -2031,7 +2031,7 @@ pre .css ~ * .id {
   position: relative;
   -webkit-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
-  margin: 0px 9px 0px 8px;
+  margin: 0px 9px 0px 0px;
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
 }
 .tagcloud a:hover {
@@ -2084,12 +2084,12 @@ pre .css ~ * .id {
 }
 .article-category:before {
   float: left;
-  color: #999;
+  color: #ccc;
   content: "\f02d";
   font: 16px FontAwesome;
   float: left;
   margin-right: 10px;
-  margin-top: 9px;
+  margin-top: 4px;
 }
 .article-category:after {
   float: left;
