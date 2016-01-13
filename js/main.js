@@ -49,21 +49,25 @@ require([], function (){
 		}
 	})
 	.on('load', function(){
-		$document.pjax("a[data-pjax]", ".mid-col")
-		.on("pjax:timeout", function(event) {
-			event.preventDefault()
-		})
-		.on('pjax:click', function(){		
-			NProgress.start();
-			$main.fadeOut(5000);
-		})
-		.on("pjax:start", function() {		
-		})
-		.on("pjax:send", function(){
-			$main.fadeTo(500, 0);
-		})
-		.on("pjax:end", function(){
-			NProgress.done();
+		$(document).pjax('a[data-pjax], a, a:not([target=_blank])', '.mid-col', { fragment: '.mid-col', timeout: 10000 });
+		$(document).on({
+		    'pjax:click': function () {
+		    	$('.mid-col').removeClass('fadeIn').addClass('fadeOut');	    	
+		        NProgress.start();
+		    },
+		    'pjax:start': function () {
+		        $('.mid-col').css('opacity','0');
+		    },
+		    'pjax:end': function () {
+		        NProgress.done();
+		        $('.mid-col').css('opacity','1').removeClass('fadeOut').addClass('fadeIn');
+				var w = $window.width();
+				if(w >= 700){
+					loadPC();
+				}else{
+					loadMobile();
+				}
+		    }
 		});
 	});
 
