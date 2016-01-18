@@ -1230,6 +1230,7 @@ a {
   padding: 5%;
 }
 .article {
+  width: 100%;
   float: left;
   position: relative;
   margin: 0px auto 30px;
