@@ -49,11 +49,12 @@ require([], function (){
 		}
 	})
 	.on('load', function(){
-		$(document).pjax('a[data-pjax], a, a:not([target=_blank])', '.mid-col', { fragment: '.mid-col', timeout: 10000 });
+		$(document).pjax('a:not([data-pjax=false]):not([target=_blank])', '.mid-col', { fragment: '.mid-col', timeout: 10000 });
 		$(document).on({
 		    'pjax:click': function () {
 		    	$('.mid-col').removeClass('fadeIn').addClass('fadeOut');	    	
 		        NProgress.start();
+		        $('')
 		    },
 		    'pjax:start': function () {
 		        $('.mid-col').css('opacity','0');
@@ -67,7 +68,10 @@ require([], function (){
 				}else{
 					loadMobile();
 				}
-		    }
+		    },
+		    'pjax:popstate': function () {	        	    	
+		        //setTimeout("$('.duoshuo').children().remove();",100);
+		    },
 		});
 	});
 
@@ -86,7 +90,7 @@ require([], function (){
 				for(var i=0,len=imgArr.length;i<len;i++){
 					var src = imgArr.eq(i).attr("src");
 					var title = imgArr.eq(i).attr("alt");
-					imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
+					imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' data-pjax='false' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
 				}
 				$(".article-inner .fancy-ctn").fancybox();
 			}
@@ -130,4 +134,5 @@ require([], function (){
 	if(yiliaConfig.open_in_new == true){
 		$(".article a[href]").attr("target", "_blank")
 	}
+
 });
