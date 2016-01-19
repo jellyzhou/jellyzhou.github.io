@@ -15,7 +15,7 @@
 1.工厂模式123456789101112function createPerson(name, age, job)&amp;#123;    var o = new Object();    o.name = name;    o.age = age;    o.job = job;    o">
 <meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/yuanxingObject.png">
 <meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/yuanxingObject2.png">
-<meta property="og:updated_time" content="2016-01-18T11:58:48.708Z">
+<meta property="og:updated_time" content="2016-01-19T09:47:20.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript创建Object">
 <meta name="twitter:description" content="使用Object构造函数和对象字面量都可以创建单个对象，缺点：使用一个借口创建很多对象，会产生很多重复性代码。
@@ -253,6 +253,7 @@
 <p>重写原型对象： 调用构造函数时会为实例添加一个指向最初原型的[ [prototype] ]指针，而把原型对象重写为另外一个对象就等于切断了构造函数与原型之间的联系，此时实例指针指向（Object）。请记住：实例中的指针仅指向原型，而不是指向构造函数。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Person</span></span>()&#123;</span><br><span class="line">&#125;</span><br><span class="line">var friend = new Person();</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    constructor: Person,</span><br><span class="line">    name : <span class="string">"Nicholas"</span>,</span><br><span class="line">    age : <span class="number">29</span>,</span><br><span class="line">    job : <span class="string">"Software Engineer"</span>,</span><br><span class="line">    sayName : <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">          alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">friend.sayName(); //error</span><br></pre></td></tr></table></figure>
 <p><img src="/assets/blogImg/yuanxingObject2.png" alt="重写原型之后的动态结果" title="重写原型之后的动态结果"></p>
+<p>重写原型对象切断了现有原型和任何之前已经存在的实例之间的联系；它们引用的仍然是最初的原型。</p>
 <h5 id="e-_u539F_u751F_u5BF9_u8C61_u7684_u539F_u578B"><a href="#e-_u539F_u751F_u5BF9_u8C61_u7684_u539F_u578B" class="headerlink" title="e.原生对象的原型"></a>e.原生对象的原型</h5><p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。所有原生引用类型（Object、 Array、 String，等等）都在其构造函数的原型上定义了方法。通过原生对象的原型，不仅可以取得所有默认方法的引用，而且也可以定义新方法。</p>
 <h5 id="f-_u539F_u578B_u5BF9_u8C61_u7684_u95EE_u9898"><a href="#f-_u539F_u578B_u5BF9_u8C61_u7684_u95EE_u9898" class="headerlink" title="f.原型对象的问题"></a>f.原型对象的问题</h5><pre><code>问题一：省略了为构造函数传递初始化参数这一个环节，会导致所有实例的属性值都相同
 问题二：原型中所有属性是被很多实例所共享的，对于基本值得属性来说没关系的，对于包含引用类型的值来说，问题就比较突出了，就会修改原生对象的属性，并且所有实例访问这个属性也会发生变化。
