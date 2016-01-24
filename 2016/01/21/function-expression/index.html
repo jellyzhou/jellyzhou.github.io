@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hello world," />
+  <meta name="keywords" content="function,作用域,递归,闭包," />
 
 
 
@@ -59,19 +59,19 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="1.递归递归函数实在一个函数调用名字来调用自身的情况下构成的。经典递归函数：1234567function factorial(num)&amp;#123;    if(num &amp;lt;= 1)&amp;#123;        return 1;    &amp;#125;else&amp;#123;        return num * factorial(num-1);    &amp;#125;&amp;#125;
+虽然看起来没问题，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://jellyzhou.github.io/2016/01/09/hello-world/index.html">
+<meta property="og:title" content="function-expression">
+<meta property="og:url" content="http://jellyzhou.github.io/2016/01/21/function-expression/index.html">
 <meta property="og:site_name" content="Chow's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-01-16T12:34:12.761Z">
+<meta property="og:description" content="1.递归递归函数实在一个函数调用名字来调用自身的情况下构成的。经典递归函数：1234567function factorial(num)&amp;#123;    if(num &amp;lt;= 1)&amp;#123;        return 1;    &amp;#125;else&amp;#123;        return num * factorial(num-1);    &amp;#125;&amp;#125;
+虽然看起来没问题，">
+<meta property="og:updated_time" content="2016-01-21T16:12:29.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="function-expression">
+<meta name="twitter:description" content="1.递归递归函数实在一个函数调用名字来调用自身的情况下构成的。经典递归函数：1234567function factorial(num)&amp;#123;    if(num &amp;lt;= 1)&amp;#123;        return 1;    &amp;#125;else&amp;#123;        return num * factorial(num-1);    &amp;#125;&amp;#125;
+虽然看起来没问题，">
 
 
 
@@ -89,7 +89,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | Chow's Blog </title>
+  <title> function-expression | Chow's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -209,7 +209,7 @@ Quick">
             
             
               
-                Hello World
+                function-expression
               
             
           </h1>
@@ -221,8 +221,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-09T00:46:00+08:00" content="2016-01-09">
-              2016-01-09
+            <time itemprop="dateCreated" datetime="2016-01-21T23:13:14+08:00" content="2016-01-21">
+              2016-01-21
             </time>
           </span>
 
@@ -266,16 +266,12 @@ Quick">
       
 
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<a id="more"></a>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="1-_u9012_u5F52"><a href="#1-_u9012_u5F52" class="headerlink" title="1.递归"></a>1.递归</h3><p>递归函数实在一个函数调用名字来调用自身的情况下构成的。经典递归函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> factorial(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * factorial(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然看起来没问题，但是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var anotherFactorial = factorial;</span><br><span class="line">factorial = null;</span><br><span class="line">alert(anotherFactorial(<span class="number">5</span>));  // error，因为anotherFactorial函数重的factorial已设置为null。</span><br></pre></td></tr></table></figure></p>
+<p>解决方法： arguments.callee代表正在执行的函数指针,但是在严格模式下会出错。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> factorial(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * arguments.callee(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决办法：可以使用命名函数表达式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var factorial = (<span class="keyword">function</span> f(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * f(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-__u95ED_u5305"><a href="#2-__u95ED_u5305" class="headerlink" title="2. 闭包"></a>2. 闭包</h3><p>闭包是有权访问另外一个函数作用域中变量的函数。常见创建方式就是在一个函数中创建另外一个函数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createComparisonFunction(propertyName) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="keyword">function</span>(object1, object2)&#123;</span><br><span class="line">        var value1 = object1[propertyName];</span><br><span class="line">        var value2 = object2[propertyName];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (value1 &lt; value2)&#123;</span><br><span class="line">            <span class="built_in">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2)&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当某个函数被调用时，会创建一个执行环境及相应的作用域链。然后使用arguments和其他命名参数来初始化函数活动对象。但在作用域中外部函数活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位，……直至作为作用于链的全局环境。</p>
 
       
     </div>
@@ -284,7 +280,13 @@ Quick">
       
         <div class="post-tags">
           
-            <a href="/tags/hello-world/" rel="tag">#hello world</a>
+            <a href="/tags/function/" rel="tag">#function</a>
+          
+            <a href="/tags/作用域/" rel="tag">#作用域</a>
+          
+            <a href="/tags/递归/" rel="tag">#递归</a>
+          
+            <a href="/tags/闭包/" rel="tag">#闭包</a>
           
         </div>
       
@@ -293,13 +295,13 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/01/19/javascript之继承（原型链）/" rel="next" title="javascript之继承（原型链）">
+                <i class="fa fa-chevron-left"></i> javascript之继承（原型链）
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/16/javascript-Object/" rel="prev" title="javascript创建Object">
-                javascript创建Object <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,7 +422,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u9012_u5F52"><span class="nav-number">1.</span> <span class="nav-text">1.递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-__u95ED_u5305"><span class="nav-number">2.</span> <span class="nav-text">2. 闭包</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

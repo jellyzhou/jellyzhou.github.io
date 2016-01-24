@@ -1,0 +1,703 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="原型链,继承," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chow's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="1.原型链每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。实现原型代码模式：123456789101112">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript之继承（原型链）">
+<meta property="og:url" content="http://jellyzhou.github.io/2016/01/19/javascript之继承（原型链）/index.html">
+<meta property="og:site_name" content="Chow's Blog">
+<meta property="og:description" content="1.原型链每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。实现原型代码模式：123456789101112">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/yuanxinglianeg1.png">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/yuanxinglianObject.png">
+<meta property="og:updated_time" content="2016-01-19T14:42:40.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript之继承（原型链）">
+<meta name="twitter:description" content="1.原型链每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。实现原型代码模式：123456789101112">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> javascript之继承（原型链） | Chow's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chow's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript之继承（原型链）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-19T17:49:33+08:00" content="2016-01-19">
+              2016-01-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-_u539F_u578B_u94FE"><a href="#1-_u539F_u578B_u94FE" class="headerlink" title="1.原型链"></a>1.原型链</h3><p>每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。<br>实现原型代码模式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.property;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    this.subProperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">   <span class="built_in">return</span> this.subProperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance = new subType();</span><br><span class="line">alert(instance.getSuperValue()); // <span class="literal">true</span>;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><img src="/assets/blogImg/yuanxinglianeg1.png" alt="原型代码模式" title="原型代码模式"></p>
+<h4 id="a-_u9ED8_u8BA4_u539F_u578B"><a href="#a-_u9ED8_u8BA4_u539F_u578B" class="headerlink" title="a.默认原型"></a>a.默认原型</h4><p>所有函数的默认原型都是Object的实例，因此默认函数内部都包含一个指针，指向Object.prototype。这也正是所有自定义类型都会继承toString()，valueOf()等方法的原因。<br><img src="/assets/blogImg/yuanxinglianObject.png" alt="原型代码模式" title="原型代码模式"></p>
+<h4 id="b-_u786E_u5B9A_u5B9E_u4F8B_u4E0E_u539F_u578B_u4E4B_u95F4_u7684_u5173_u7CFB"><a href="#b-_u786E_u5B9A_u5B9E_u4F8B_u4E0E_u539F_u578B_u4E4B_u95F4_u7684_u5173_u7CFB" class="headerlink" title="b.确定实例与原型之间的关系"></a>b.确定实例与原型之间的关系</h4><p>两个方法：instanceof和isPrototypeof()</p>
+<h4 id="c-_u8C28_u614E_u5B9A_u4E49_u65B9_u6CD5"><a href="#c-_u8C28_u614E_u5B9A_u4E49_u65B9_u6CD5" class="headerlink" title="c.谨慎定义方法"></a>c.谨慎定义方法</h4><p>i.子类型需要重写超类型中的方法，或者添加超类型中不存在的方法时，一定要把给原型添加的方法代码放到替换原型的代码之后。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.property;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    this.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">//继承了 SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">//添加新方法</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line">//重写超类型中的方法</span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); //<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>ii.在给子类型替换原型代码之后，不能以字面量对象的方式给子类型原型添加方法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.property;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">this.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">//继承了 SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">//使用字面量添加新方法，会导致上一行代码无效</span><br><span class="line">SubType.prototype = &#123;</span><br><span class="line">      getSubValue : <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">        <span class="built_in">return</span> this.subproperty;</span><br><span class="line">      &#125;,</span><br><span class="line">      someOtherMethod : <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">          <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); //error!</span><br></pre></td></tr></table></figure></p>
+<h4 id="d-_u539F_u578B_u94FE_u95EE_u9898"><a href="#d-_u539F_u578B_u94FE_u95EE_u9898" class="headerlink" title="d.原型链问题"></a>d.原型链问题</h4><p>  第一个问题是包含引用类型值的原型，包含引用类型的值的原型属性会被所有实例所共享。<br>  第二个问题是在创建子类型实例的时候，不能向超类型的构造函数中传递参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">  this.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;&#125;</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line"></span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>);</span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.colors); // <span class="string">"red, blue, green, black"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-_u501F_u7528_u6784_u9020_u51FD_u6570"><a href="#2-_u501F_u7528_u6784_u9020_u51FD_u6570" class="headerlink" title="2.借用构造函数"></a>2.借用构造函数</h3><p>基本思想：在子类型构造函数内部通过call或者apply()方法调用超类型构造函数。函数在特定环境下是对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    SuperType.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>);</span><br><span class="line">alert(instance1.colors); // <span class="string">"red, blue, green, black"</span></span><br><span class="line">alert(instance2.colors); // <span class="string">"red, blue, green"</span></span><br></pre></td></tr></table></figure>
+<h4 id="a-_u4F20_u9012_u53C2_u6570"><a href="#a-_u4F20_u9012_u53C2_u6570" class="headerlink" title="a.传递参数"></a>a.传递参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> SuperType(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    //继承了SuperType，同时还继承了属性</span><br><span class="line">    SuperType.call(this, <span class="string">"Nike"</span>);</span><br><span class="line"></span><br><span class="line">    //实例属性</span><br><span class="line">    this.age = <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.name); // <span class="string">'Nike'</span></span><br><span class="line">alert(instance.age);  // <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>在SubType构造函数中调用SuperType构造函数时，实际上是为SubType构造函数添加了name属性。</p>
+<h4 id="b-_u501F_u7528_u6784_u9020_u51FD_u6570_u7684_u95EE_u9898"><a href="#b-_u501F_u7528_u6784_u9020_u51FD_u6570_u7684_u95EE_u9898" class="headerlink" title="b.借用构造函数的问题"></a>b.借用构造函数的问题</h4><p>单独使用构造函数模式，会让方法无法复用。并且在超类型的原型中的方法，无法让子类型实例继承。</p>
+<h3 id="3-_u7EC4_u5408_u4F7F_u7528_u539F_u578B_u94FE_u548C_u501F_u7528_u6784_u9020_u51FD_u6570"><a href="#3-_u7EC4_u5408_u4F7F_u7528_u539F_u578B_u94FE_u548C_u501F_u7528_u6784_u9020_u51FD_u6570" class="headerlink" title="3.组合使用原型链和借用构造函数"></a>3.组合使用原型链和借用构造函数</h3><p>思路：使用原型链实现对原型的属性和方法的继承，而通过借用构造来实现对实例属性的继承，从而发挥二者之长。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> SuperType(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.colors = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> SubType(name, age)&#123;</span><br><span class="line">    SuperType.call(this, name);</span><br><span class="line"></span><br><span class="line">    this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    alert(this.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var instance1 = new SubType(<span class="string">'Nike'</span>, <span class="number">20</span>);</span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>);</span><br><span class="line">alert(instance1.colors); //<span class="string">"red, yellow, blue, black"</span></span><br><span class="line"></span><br><span class="line">var instance2 = new SubType(<span class="string">'Tom'</span>, <span class="number">18</span>);</span><br><span class="line">instance2.colors.push(<span class="string">"pink"</span>);</span><br><span class="line">alert(instance2.colors); // <span class="string">"red, yellow, blue, pink"</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-__u539F_u578B_u5F0F_u7EE7_u627F"><a href="#3-__u539F_u578B_u5F0F_u7EE7_u627F" class="headerlink" title="3. 原型式继承"></a>3. 原型式继承</h3><p>道格拉斯·克罗克福德2006年提出的这个方法。这种方法并没有严格意义上创建构造函数。他的想法是借助原型可以基于已有的对象创建对象，同时还不必因此创建自定义类型。他给出的函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> object(o)&#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="function"><span class="title">F</span></span>()&#123;&#125;;</span><br><span class="line">  F.prototype = o;</span><br><span class="line">  <span class="built_in">return</span> new F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 object()函数内部，先创建了一个临时性的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时类型的一个新实例。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: <span class="string">"Nicholas"</span>,</span><br><span class="line">    friends: [<span class="string">"Shelby"</span>, <span class="string">"Court"</span>, <span class="string">"Van"</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var anotherPerson = object(person);</span><br><span class="line">anotherPerson.name = <span class="string">"Greg"</span>;</span><br><span class="line">anotherPerson.friends.push(<span class="string">"Rob"</span>);</span><br><span class="line"></span><br><span class="line">var yetAnotherPerson = object(person);</span><br><span class="line">yetAnotherPerson.name = <span class="string">"Linda"</span>;</span><br><span class="line">yetAnotherPerson.friends.push(<span class="string">"Barbie"</span>);</span><br><span class="line">alert(person.friends); //<span class="string">"Shelby,Court,Van,Rob,Barbie"</span></span><br></pre></td></tr></table></figure></p>
+<p>ECMAScript 5 通过新增 Object.create()方法规范化了原型式继承。这个方法接收两个参数：一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象。<br>第二个参数与Object.defineProperties()方法的第二个参数格式相同：每个属性都是通过自己的描述符定义的。<br>支持 Object.create()方法的浏览器有 IE9+、 Firefox 4+、 Safari 5+、 Opera 12+和 Chrome。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: <span class="string">"Nicholas"</span>,</span><br><span class="line">    friends: [<span class="string">"Shelby"</span>, <span class="string">"Court"</span>, <span class="string">"Van"</span>]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = Object.create(person, &#123;</span><br><span class="line">      name: &#123;</span><br><span class="line">          value: <span class="string">"Greg"</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;);</span><br><span class="line">alert(anotherPerson.name); //<span class="string">"Greg"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原型链/" rel="tag">#原型链</a>
+          
+            <a href="/tags/继承/" rel="tag">#继承</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/16/javascript-Object/" rel="next" title="javascript创建Object">
+                <i class="fa fa-chevron-left"></i> javascript创建Object
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/21/function-expression/" rel="prev" title="function-expression">
+                function-expression <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="jellyChow" />
+          <p class="site-author-name" itemprop="name">jellyChow</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u539F_u578B_u94FE"><span class="nav-number">1.</span> <span class="nav-text">1.原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-_u9ED8_u8BA4_u539F_u578B"><span class="nav-number">1.1.</span> <span class="nav-text">a.默认原型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-_u786E_u5B9A_u5B9E_u4F8B_u4E0E_u539F_u578B_u4E4B_u95F4_u7684_u5173_u7CFB"><span class="nav-number">1.2.</span> <span class="nav-text">b.确定实例与原型之间的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-_u8C28_u614E_u5B9A_u4E49_u65B9_u6CD5"><span class="nav-number">1.3.</span> <span class="nav-text">c.谨慎定义方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-_u539F_u578B_u94FE_u95EE_u9898"><span class="nav-number">1.4.</span> <span class="nav-text">d.原型链问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_u501F_u7528_u6784_u9020_u51FD_u6570"><span class="nav-number">2.</span> <span class="nav-text">2.借用构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-_u4F20_u9012_u53C2_u6570"><span class="nav-number">2.1.</span> <span class="nav-text">a.传递参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-_u501F_u7528_u6784_u9020_u51FD_u6570_u7684_u95EE_u9898"><span class="nav-number">2.2.</span> <span class="nav-text">b.借用构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_u7EC4_u5408_u4F7F_u7528_u539F_u578B_u94FE_u548C_u501F_u7528_u6784_u9020_u51FD_u6570"><span class="nav-number">3.</span> <span class="nav-text">3.组合使用原型链和借用构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-__u539F_u578B_u5F0F_u7EE7_u627F"><span class="nav-number">4.</span> <span class="nav-text">3. 原型式继承</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jellyChow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
