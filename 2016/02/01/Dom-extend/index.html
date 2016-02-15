@@ -1,0 +1,731 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Dom,选择符API," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chow's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="a. 选择符APISelectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。
+o&amp;gt; querySelector(“css选择符”) —&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dom-extend">
+<meta property="og:url" content="http://jellyzhou.github.io/2016/02/01/Dom-extend/index.html">
+<meta property="og:site_name" content="Chow's Blog">
+<meta property="og:description" content="a. 选择符APISelectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。
+o&amp;gt; querySelector(“css选择符”) —&amp;gt">
+<meta property="og:updated_time" content="2016-02-15T08:01:20.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dom-extend">
+<meta name="twitter:description" content="a. 选择符APISelectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。
+o&amp;gt; querySelector(“css选择符”) —&amp;gt">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Dom-extend | Chow's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chow's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dom-extend
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T21:45:34+08:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="a-__u9009_u62E9_u7B26API"><a href="#a-__u9009_u62E9_u7B26API" class="headerlink" title="a. 选择符API"></a>a. 选择符API</h4><p>Selectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1<br>的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。</p>
+<h5 id="o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002"><a href="#o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002" class="headerlink" title="o&gt; querySelector(“css选择符”) —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。"></a>o&gt; <code>querySelector(“css选择符”)</code> —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var body = document.querySelector(<span class="string">"body"</span>);</span><br><span class="line">var myDiv = document.querySelector(<span class="string">"#myDiv"</span>);</span><br><span class="line">var selected = document.querySelector(<span class="string">".selected"</span>);</span><br><span class="line">var img = document.querySelector(<span class="string">"img.button"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002"><a href="#o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002" class="headerlink" title="o&gt; querySelectorAll(“css选择符”) —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。"></a>o&gt; <code>querySelectorAll(“css选择符”)</code> —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。</h5><h5 id="o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B"><a href="#o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B" class="headerlink" title="o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 matchesSelector(“CSS 选择符”)。调用元素与该选择符匹配返回true, 否则返回false;"></a>o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 <code>matchesSelector(“CSS 选择符”)</code>。调用元素与该选择符匹配返回true, 否则返回false;</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> matchesSelector(element, selector)&#123;</span><br><span class="line">    <span class="keyword">if</span>(element.matchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.matchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.msMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.mozMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.webkitMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.webkitMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        throw new Error(<span class="string">"Not Supported!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="b-_u5143_u7D20_u904D_u5386"><a href="#b-_u5143_u7D20_u904D_u5386" class="headerlink" title="b.元素遍历"></a>b.元素遍历</h4><h5 id="o_26gt_3B__u5BF9_u4E8E_u5143_u7D20_u95F4_u7684_u7A7A_u683C_uFF0C_IE9__u53CA_u4E4B_u524D_u7248_u672C_u4E0D_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_uFF0C_u800C_u5176_u4ED6_u6240_u6709_u6D4F_u89C8_u5668_u90FD_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_u3002_u8FD9_u6837_uFF0C_u5C31_u5BFC_u81F4_u4E86_u5728_u4F7F_u7528_childNodes__u548C_firstChild__u7B49_u5C5E_u6027_u65F6_u7684_u884C_u4E3A_u4E0D_u4E00_u81F4_u3002_u4E3A_u4E86_u5F25_u8865_u8FD9_u4E00_u5DEE_u5F02_uFF0C_u800C_u540C_u65F6_u53C8_u4FDD_u6301_DOM__u89C4_u8303_u4E0D_u53D8_uFF0C_Element_Traversal__u89C4_u8303_uFF08www-w3-org/TR/ElementTraversal/_uFF09_u65B0_u5B9A_u4E49_u4E86_u4E00_u7EC4_u5C5E_u6027_u3002_u652F_u6301_u7684_u6D4F_u89C8_u5668_u4E3A_DOM__u5143_u7D20_u6DFB_u52A0_u4E86_u8FD9_u4E9B_u5C5E_u6027_uFF0C_u5229_u7528_u8FD9_u4E9B_u5143_u7D20_u4E0D_u5FC5_u62C5_u5FC3_u7A7A_u767D_u6587_u672C_u8282_u70B9"><a href="#o_26gt_3B__u5BF9_u4E8E_u5143_u7D20_u95F4_u7684_u7A7A_u683C_uFF0C_IE9__u53CA_u4E4B_u524D_u7248_u672C_u4E0D_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_uFF0C_u800C_u5176_u4ED6_u6240_u6709_u6D4F_u89C8_u5668_u90FD_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_u3002_u8FD9_u6837_uFF0C_u5C31_u5BFC_u81F4_u4E86_u5728_u4F7F_u7528_childNodes__u548C_firstChild__u7B49_u5C5E_u6027_u65F6_u7684_u884C_u4E3A_u4E0D_u4E00_u81F4_u3002_u4E3A_u4E86_u5F25_u8865_u8FD9_u4E00_u5DEE_u5F02_uFF0C_u800C_u540C_u65F6_u53C8_u4FDD_u6301_DOM__u89C4_u8303_u4E0D_u53D8_uFF0C_Element_Traversal__u89C4_u8303_uFF08www-w3-org/TR/ElementTraversal/_uFF09_u65B0_u5B9A_u4E49_u4E86_u4E00_u7EC4_u5C5E_u6027_u3002_u652F_u6301_u7684_u6D4F_u89C8_u5668_u4E3A_DOM__u5143_u7D20_u6DFB_u52A0_u4E86_u8FD9_u4E9B_u5C5E_u6027_uFF0C_u5229_u7528_u8FD9_u4E9B_u5143_u7D20_u4E0D_u5FC5_u62C5_u5FC3_u7A7A_u767D_u6587_u672C_u8282_u70B9" class="headerlink" title="o&gt; 对于元素间的空格， IE9 及之前版本不会返回文本节点，而其他所有浏览器都会返回文本节点。这样，就导致了在使用 childNodes 和 firstChild        等属性时的行为不一致。为了弥补这一差异，而同时又保持 DOM 规范不变， Element Traversal 规范（www.w3.org/TR/ElementTraversal/）新定义了一组属性。支持的浏览器为 DOM 元素添加了这些属性，利用这些元素不必担心空白文本节点."></a>o&gt; 对于元素间的空格， IE9 及之前版本不会返回文本节点，而其他所有浏览器都会返回文本节点。这样，就导致了在使用 childNodes 和 firstChild        等属性时的行为不一致。为了弥补这一差异，而同时又保持 DOM 规范不变， Element Traversal 规范（www.w3.org/TR/ElementTraversal/）新定义了一组属性。支持的浏览器为 DOM 元素添加了这些属性，利用这些元素不必担心空白文本节点.</h5><p>  Element Traversal API 为 DOM 元素添加了以下 5 个属性。<br>     childElementCount：返回子元素（不包括文本节点和注释）的个数。<br>     firstElementChild：指向第一个子元素； firstChild 的元素版。<br>     lastElementChild：指向最后一个子元素； lastChild 的元素版。<br>     previousElementSibling：指向前一个同辈元素； previousSibling 的元素版。<br>     nextElementSibling：指向后一个同辈元素； nextSibling 的元素版。</p>
+<p>支持 Element Traversal 规范的浏览器有 IE 9+、 Firefox 3.5+、 Safari 4+、 Chrome 和 Opera 10+。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var i,len,</span><br><span class="line">    child = element.firstElementChild;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(child != element.lastElementChild)&#123;</span><br><span class="line">    processChild(child); //已知其是元素</span><br><span class="line">    child = child.nextElementSibling;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="c-_HTML5"><a href="#c-_HTML5" class="headerlink" title="c. HTML5"></a>c. HTML5</h4><h5 id="o_26gt_3B_getEelementsByClassName_28_29__u8FD4_u56DENodeList_u7684_u5B9E_u4F8B_u3002"><a href="#o_26gt_3B_getEelementsByClassName_28_29__u8FD4_u56DENodeList_u7684_u5B9E_u4F8B_u3002" class="headerlink" title="o&gt; getEelementsByClassName() 返回NodeList的实例。"></a>o&gt; getEelementsByClassName() 返回NodeList的实例。</h5><p>·  IE 9+、 Firefox 3+、 Safari 3.1+、 Chrome 和 Opera 9.5+。</p>
+<h5 id="o_26gt_3B_classList__u5C5E_u6027__uFF08DOMTokenList__u7684_u5B9E_u4F8B_uFF09_uFF1A__u6DFB_u52A0_u3001_u5220_u9664_u548C_u66FF_u6362_u7C7B_u540D_u3002"><a href="#o_26gt_3B_classList__u5C5E_u6027__uFF08DOMTokenList__u7684_u5B9E_u4F8B_uFF09_uFF1A__u6DFB_u52A0_u3001_u5220_u9664_u548C_u66FF_u6362_u7C7B_u540D_u3002" class="headerlink" title="o&gt; classList 属性 （DOMTokenList 的实例）： 添加、删除和替换类名。"></a>o&gt; classList 属性 （DOMTokenList 的实例）： 添加、删除和替换类名。</h5><p>   支持 classList 属性的浏览器有 Firefox 3.6+和 Chrome。<br>   DOMTokenList 有一个表示自己包含多少元素的 length 属性，而要取得每个元素可以使用 item()方法，也可以使用方括号语法。</p>
+<p>    add(value)：将给定的字符串值添加到列表中。如果值已经存在，就不添加了。<br>    contains(value)：表示列表中是否存在给定的值，如果存在则返回 true，否则返回 false。<br>    remove(value)：从列表中删除给定的字符串。<br>    toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添加它。</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"bd user disabled"</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">var div = document.getElementsByTagName(<span class="string">'div'</span>)[<span class="number">0</span>];</span><br><span class="line">div.classList.remove(<span class="string">"user"</span>);</span><br><span class="line">div.classList.add(<span class="string">"current"</span>);</span><br><span class="line">div.classList.toggle(<span class="string">"disabled"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="o_26gt_3B__u7126_u70B9_u7BA1_u7406"><a href="#o_26gt_3B__u7126_u70B9_u7BA1_u7406" class="headerlink" title="o&gt; 焦点管理"></a>o&gt; 焦点管理</h5><h6 id="i_26gt_3B_document-activeElement__3A__u59CB_u7EC8_u4F1A_u5F15_u7528DOM_u4E2D_u5F53_u524D_u83B7_u5F97_u4E86_u7126_u70B9_u7684_u5143_u7D20_u3002"><a href="#i_26gt_3B_document-activeElement__3A__u59CB_u7EC8_u4F1A_u5F15_u7528DOM_u4E2D_u5F53_u524D_u83B7_u5F97_u4E86_u7126_u70B9_u7684_u5143_u7D20_u3002" class="headerlink" title="i&gt; document.activeElement :　始终会引用DOM中当前获得了焦点的元素。"></a>i&gt; document.activeElement :　始终会引用DOM中当前获得了焦点的元素。</h6><pre><code>默认情况下，文档刚刚加载完成时， document.activeElement 中保存的是 document.body 元素的引用。文档加载期间， document.activeElement 的值为 null。
+</code></pre><h6 id="i_26gt_3B_docuemnt-hasFocus_28_29__3A__u7528_u4E8E_u786E_u5B9A_u6587_u6863_u662F_u5426_u83B7_u5F97_u4E86_u7126_u70B9_u3002"><a href="#i_26gt_3B_docuemnt-hasFocus_28_29__3A__u7528_u4E8E_u786E_u5B9A_u6587_u6863_u662F_u5426_u83B7_u5F97_u4E86_u7126_u70B9_u3002" class="headerlink" title="i&gt; docuemnt.hasFocus() : 用于确定文档是否获得了焦点。"></a>i&gt; docuemnt.hasFocus() : 用于确定文档是否获得了焦点。</h6><p>   实现了这两个属性的浏览器的包括 IE 4+、 Firefox 3+、 Safari 4+、 Chrome 和 Opera 8+。</p>
+<h5 id="o_26gt_3B_HTMLDocument_u7684_u53D8_u5316"><a href="#o_26gt_3B_HTMLDocument_u7684_u53D8_u5316" class="headerlink" title="o&gt; HTMLDocument的变化"></a>o&gt; HTMLDocument的变化</h5><h6 id="i_26gt_3B_readyState__u5C5E_u6027_u3002"><a href="#i_26gt_3B_readyState__u5C5E_u6027_u3002" class="headerlink" title="i&gt; readyState 属性。"></a>i&gt; readyState 属性。</h6><pre><code>Document 的 readyState 属性有两个可能的值：
+   -- loading ： 正在加载文档
+   -- complete ： 文档已经加载完成
+支持 readyState 属性的浏览器有 IE4+、 Firefox 3.6+、 Safari、 Chrome 和 Opera 9+。
+</code></pre><h6 id="i_26gt_3B__u517C_u5BB9_u6A21_u5F0F_uFF1A_compatMode_u5C5E_u6027"><a href="#i_26gt_3B__u517C_u5BB9_u6A21_u5F0F_uFF1A_compatMode_u5C5E_u6027" class="headerlink" title="i&gt; 兼容模式： compatMode属性"></a>i&gt; 兼容模式： compatMode属性</h6><pre><code>自从 IE6 开始区分渲染页面的模式是标准的还是混杂的
+  -- CSS1Compat ： 在标准模式下
+  -- BackCompat ： 在混杂模式下
+</code></pre><p>  支持compatMode属性的浏览器有 IE6+ Firefox、 Safari 3.1+、 Opera 和 Chrome  </p>
+<h6 id="i_26gt_3B_document-head__u5C5E_u6027"><a href="#i_26gt_3B_document-head__u5C5E_u6027" class="headerlink" title="i&gt; document.head 属性"></a>i&gt; document.head 属性</h6><pre><code>实现 document.head 属性的浏览器包括 Chrome 和 Safari 5
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var head = document.head || document.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+</code></pre><h6 id="i_26gt_3B_document-charset__u5B57_u7B26_u96C6_u5C5E_u6027_28_u53EF_u8BFB_u53D6_u8BBE_u7F6E_29"><a href="#i_26gt_3B_document-charset__u5B57_u7B26_u96C6_u5C5E_u6027_28_u53EF_u8BFB_u53D6_u8BBE_u7F6E_29" class="headerlink" title="i&gt; document.charset 字符集属性(可读取设置)"></a>i&gt; document.charset 字符集属性(可读取设置)</h6><pre><code>默认情况下，这个属性的值为&quot;UTF-16&quot;，但可以通过&lt;meta&gt;元素、响应头部或直接设置 charset 属性修改这个值。
+支持 document.charset 属性的浏览器有 IE、 Firefox、 Safari、 Opera 和 Chrome。
+
+defaultCharset属性表示根据默认浏览器及操作系统的设置，当前文档默认的字符集应该是什么。如果文档没有使用默认的字符集，那 charset 和 defaultCharset 属性的值可能会不一样。
+支持document.defaultCharset 属性的浏览器有 IE、 Safari 和 Chrome。
+</code></pre><h6 id="i_26gt_3B__u81EA_u5B9A_u4E49_u6570_u636E_u5C5E_u6027"><a href="#i_26gt_3B__u81EA_u5B9A_u4E49_u6570_u636E_u5C5E_u6027" class="headerlink" title="i&gt; 自定义数据属性"></a>i&gt; 自定义数据属性</h6><p>   HTML5 规定可以为元素添加非标准的属性，但要添加前缀 data-，目的是为元素提供与渲染无关的信息，或者提供语义信息。这些属性可以任意添加、随便命名，只要以 data-开头即可。</p>
+<p>   可以通过元素的 <code>dataset</code> 属性来访问自定义属性的值<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var appid = div.dataset.appid;</span><br><span class="line">div.dataset.appid  = <span class="number">1234</span>;</span><br></pre></td></tr></table></figure></p>
+<p>   支持自定义数据属性的浏览器有 Firefox 6+和 Chrome。</p>
+<h6 id="i_26gt_3B__u63D2_u5165_u6807_u8BB0"><a href="#i_26gt_3B__u63D2_u5165_u6807_u8BB0" class="headerlink" title="i&gt; 插入标记"></a>i&gt; 插入标记</h6><p>  ii&gt; innerHTML 属性<br>     为 innerHTML 设置的包含 HTML 的字符串值与解析后 innerHTML 的值大不相同。<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eg : div.innerHTML = <span class="string">"Hello &amp; welcome, &lt;b&gt;\"reader\"!&lt;/b&gt;"</span>;</span><br><span class="line">     ==&gt; &lt;div id=<span class="string">"content"</span>&gt;Hello &amp;amp; welcome, &lt;b&gt;&amp;quot;reader&amp;quot;!&lt;/b&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>   在读取模式下，<code>innerHTML</code> 属性返回与调用元素的所有子节点（包括元素、注释和文本节点）对应的HTML标记。<br>   在写模式下，<code>innerHTML</code> 会根据指定的值创建新的 DOM树， 然后用这个 DOM树 完全替换调用元素原先的所有子节点。<br>     通过 <code>innerHTML</code> 插入 <code> &lt;script&gt;</code> 元素并不会执行其中的脚本。IE8及更早版本是唯一能在这种情况下执行脚本的浏览器<br>     条件：一是必须为&lt;script&gt;元素指定 <code>defer</code> 属性，二是&lt;script&gt;元素必须位于（微软所谓的） “有作用域的元素”（scoped element）之后。<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.innerHTML = <span class="string">"&lt;script defer&gt;alert('hi');&lt;\/script&gt;"</span>; //无效</span><br></pre></td></tr></table></figure></p>
+<p>此时， innerHTML字符串一开始（而且整个）就是一个“无作用域的元素”，所以这个字符串会变成空字符串。如果想插入这段脚本，必须在前面添加一个“有作用域的元素”，可以是一个文本节点，<br>也可以是一个没有结束标签的元素如&lt;input&gt;。例如，下面这几行代码都可以正常执行：<br>      <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div.innerHTML = <span class="string">"_&lt;script defer&gt;alert('hi');&lt;\/script&gt;"</span>;</span><br><span class="line">div.innerHTML = <span class="string">"&lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;script defer&gt;alert('hi');&lt;\/script&gt;"</span>;</span><br><span class="line">//首选：由于隐藏的&lt;input&gt;域不影响页面布局，其它两个都要删除前面多余的文本</span><br><span class="line">div.innerHTML = <span class="string">"&lt;input type=\"hidden\"&gt;&lt;script defer&gt;alert('hi');&lt;\/script&gt;"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>  插入<code>&lt;style&gt;</code>元素：&lt;style&gt;也是一个“没有作用域的元素”，因此必须像下面这样给它前置一个“有作用域的元素”。<br>       不同浏览器返回的文本格式会不相同。(大小写和空格)<br>       并不是所有元素都支持 innerHTML 属性。不支持 innerHTML 的元素有： &lt;col&gt;、 &lt;colgroup&gt;、&lt;frameset&gt;、 &lt;head&gt;、 &lt;html&gt;、 &lt;style&gt;、 &lt;table&gt;、 &lt;tbody&gt;、 &lt;thead&gt;、 &lt;tfoot&gt;和&lt;tr&gt;。此外，在 IE8 及更早版本中， &lt;title&gt;元素也没有 innerHTML 属性。</p>
+<p>  ii&gt; outerHTML 属性<br>    在读取模式下，<code>outerHTML</code> 返回调用它的元素及所有子节点的HTML标签。<br>    在写模式下， <code>outerHTML</code>会根据指定的HTML字符串创新的DOM子树，然后用这个DOM子树完全替换调用元素。</p>
+<p>  ii&gt; insertAdjacentHTML( 插入位置， 要插入的HTML文本)方法<br>  第一个参数必须是下列值之一（这些值必须都是小写形式）：</p>
+<ul>
+<li>“beforebegin” ： 在当前元素之前插入一个紧邻的同辈元素</li>
+<li>“afterbegin” ： 在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；</li>
+<li>“beforeend” ： 在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素</li>
+<li>“afterend” ： 在当前元素之后插入一个紧邻的同辈元素。</li>
+</ul>
+<p>ii&gt; 内存和性能问题：<br>在删除带有事件处理程序或引用了其他 JavaScript 对象子树时，就有可能导致内存占用问题。假设某个元素有一个事件处理程序（或者引用了一个 JavaScript对象作为属性），在使用前述某个属性将该元素从文档树中删除后，元素与事件处理程序（或JavaScript对象）之间的绑定关系在内存中并没有一并删除。如果这种情况频繁出现，页面占用的内存数量就会明显增加。因此，在使用 innerHTML、outerHTML 属性和 insertAdjacentHTML()方法时，最好先手工删除要被替换的元素的所有事件处理程序和 JavaScript 对象属性。</p>
+<p>在使用innerHTML属性时，在设置 innerHTML 或 outerHTML 时，就会创建一个 HTML解析器。这个解析器是在浏览器级别的代码（通常是 C++编写的）基础上运行的，因此比执行 JavaScript快得多。不可避免地，创建和销毁 HTML 解析器也会带来性能损失，所以最好能够将设置 innerHTML或 outerHTML 的次数控制在合理的范围内。</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">这种做法效率低下，占用内存多</span><br><span class="line"><span class="keyword">for</span>(var i = <span class="number">0</span>, len = values.length; i &lt; len; i++)&#123;</span><br><span class="line">    ul.innerHTML += <span class="string">"&lt;li&gt;"</span> + values[i] + <span class="string">"&lt;/li&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">最好的做法是：单独创建一个字符串，然后一次性地将结果字符串赋值给 innerHTML</span><br><span class="line">var innerHtml = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span>(var i = <span class="number">0</span>, len = values.length; i &lt; len; i++)&#123;</span><br><span class="line">    innerHtml += <span class="string">"&lt;li&gt;"</span> + values[i] + <span class="string">"&lt;/li&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line">ul.innerHTML = innerHtml;</span><br></pre></td></tr></table></figure>
+</code></pre><p>  ii&gt; 插入文本 innerText<br>  通过 innertText 属性可以操作元素中包含的所有文本内容，包括子文档树中的文本。<br>  在通过innerText 读取值时，它会按照由浅入深的顺序，将子文档树中的所有文本拼接起来。由于不同浏览器处理空白符的方式不同，因此输出的文本可能会也可能不会包含原始 HTML 代码中的缩进。<br>  在通过innerText 写入值时，结果会删除元素的所有子节点，插入包含相应文本值的文本节点。也对文本中存在的 HTML语法字符（小于号、大于号、引号及和号）进行了编码。</p>
+<p>  支持 innerText 属性的浏览器包括 IE4+、 Safari 3+、 Opera 8+和 Chrome。 Firefox 虽然不支持innerText，但支持作用类似的 textContent 属性。</p>
+<p>  兼容写法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> getInnerText( element )&#123;</span><br><span class="line">    <span class="built_in">return</span> (typeof element.textContent == <span class="string">"string"</span>) ? element.textContent : element.innerText ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="built_in">set</span>InnerText( element, text )&#123;</span><br><span class="line">    <span class="keyword">if</span> (typeof element.textContent == <span class="string">"string"</span> )&#123;</span><br><span class="line">        element.textContent = text;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        element.innerText = text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dom/" rel="tag">#Dom</a>
+          
+            <a href="/tags/选择符API/" rel="tag">#选择符API</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/31/Dom/" rel="next" title="Dom">
+                <i class="fa fa-chevron-left"></i> Dom
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="jellyChow" />
+          <p class="site-author-name" itemprop="name">jellyChow</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-__u9009_u62E9_u7B26API"><span class="nav-number">1.</span> <span class="nav-text">a. 选择符API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002"><span class="nav-number">1.1.</span> <span class="nav-text">o> querySelector(“css选择符”) —> 返回匹配选择符的第一个元素，若没有匹配返回null。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002"><span class="nav-number">1.2.</span> <span class="nav-text">o> querySelectorAll(“css选择符”) —-> 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B"><span class="nav-number">1.3.</span> <span class="nav-text">o> Selectors API Level 2 规范为 Element 类型新增了一个方法 matchesSelector(“CSS 选择符”)。调用元素与该选择符匹配返回true, 否则返回false;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-_u5143_u7D20_u904D_u5386"><span class="nav-number">2.</span> <span class="nav-text">b.元素遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B__u5BF9_u4E8E_u5143_u7D20_u95F4_u7684_u7A7A_u683C_uFF0C_IE9__u53CA_u4E4B_u524D_u7248_u672C_u4E0D_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_uFF0C_u800C_u5176_u4ED6_u6240_u6709_u6D4F_u89C8_u5668_u90FD_u4F1A_u8FD4_u56DE_u6587_u672C_u8282_u70B9_u3002_u8FD9_u6837_uFF0C_u5C31_u5BFC_u81F4_u4E86_u5728_u4F7F_u7528_childNodes__u548C_firstChild__u7B49_u5C5E_u6027_u65F6_u7684_u884C_u4E3A_u4E0D_u4E00_u81F4_u3002_u4E3A_u4E86_u5F25_u8865_u8FD9_u4E00_u5DEE_u5F02_uFF0C_u800C_u540C_u65F6_u53C8_u4FDD_u6301_DOM__u89C4_u8303_u4E0D_u53D8_uFF0C_Element_Traversal__u89C4_u8303_uFF08www-w3-org/TR/ElementTraversal/_uFF09_u65B0_u5B9A_u4E49_u4E86_u4E00_u7EC4_u5C5E_u6027_u3002_u652F_u6301_u7684_u6D4F_u89C8_u5668_u4E3A_DOM__u5143_u7D20_u6DFB_u52A0_u4E86_u8FD9_u4E9B_u5C5E_u6027_uFF0C_u5229_u7528_u8FD9_u4E9B_u5143_u7D20_u4E0D_u5FC5_u62C5_u5FC3_u7A7A_u767D_u6587_u672C_u8282_u70B9"><span class="nav-number">2.1.</span> <span class="nav-text">o> 对于元素间的空格， IE9 及之前版本不会返回文本节点，而其他所有浏览器都会返回文本节点。这样，就导致了在使用 childNodes 和 firstChild        等属性时的行为不一致。为了弥补这一差异，而同时又保持 DOM 规范不变， Element Traversal 规范（www.w3.org/TR/ElementTraversal/）新定义了一组属性。支持的浏览器为 DOM 元素添加了这些属性，利用这些元素不必担心空白文本节点.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-_HTML5"><span class="nav-number">3.</span> <span class="nav-text">c. HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_getEelementsByClassName_28_29__u8FD4_u56DENodeList_u7684_u5B9E_u4F8B_u3002"><span class="nav-number">3.1.</span> <span class="nav-text">o> getEelementsByClassName() 返回NodeList的实例。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_classList__u5C5E_u6027__uFF08DOMTokenList__u7684_u5B9E_u4F8B_uFF09_uFF1A__u6DFB_u52A0_u3001_u5220_u9664_u548C_u66FF_u6362_u7C7B_u540D_u3002"><span class="nav-number">3.2.</span> <span class="nav-text">o> classList 属性 （DOMTokenList 的实例）： 添加、删除和替换类名。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B__u7126_u70B9_u7BA1_u7406"><span class="nav-number">3.3.</span> <span class="nav-text">o> 焦点管理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B_document-activeElement__3A__u59CB_u7EC8_u4F1A_u5F15_u7528DOM_u4E2D_u5F53_u524D_u83B7_u5F97_u4E86_u7126_u70B9_u7684_u5143_u7D20_u3002"><span class="nav-number">3.3.1.</span> <span class="nav-text">i> document.activeElement :　始终会引用DOM中当前获得了焦点的元素。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B_docuemnt-hasFocus_28_29__3A__u7528_u4E8E_u786E_u5B9A_u6587_u6863_u662F_u5426_u83B7_u5F97_u4E86_u7126_u70B9_u3002"><span class="nav-number">3.3.2.</span> <span class="nav-text">i> docuemnt.hasFocus() : 用于确定文档是否获得了焦点。</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#o_26gt_3B_HTMLDocument_u7684_u53D8_u5316"><span class="nav-number">3.4.</span> <span class="nav-text">o> HTMLDocument的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B_readyState__u5C5E_u6027_u3002"><span class="nav-number">3.4.1.</span> <span class="nav-text">i> readyState 属性。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B__u517C_u5BB9_u6A21_u5F0F_uFF1A_compatMode_u5C5E_u6027"><span class="nav-number">3.4.2.</span> <span class="nav-text">i> 兼容模式： compatMode属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B_document-head__u5C5E_u6027"><span class="nav-number">3.4.3.</span> <span class="nav-text">i> document.head 属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B_document-charset__u5B57_u7B26_u96C6_u5C5E_u6027_28_u53EF_u8BFB_u53D6_u8BBE_u7F6E_29"><span class="nav-number">3.4.4.</span> <span class="nav-text">i> document.charset 字符集属性(可读取设置)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B__u81EA_u5B9A_u4E49_u6570_u636E_u5C5E_u6027"><span class="nav-number">3.4.5.</span> <span class="nav-text">i> 自定义数据属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i_26gt_3B__u63D2_u5165_u6807_u8BB0"><span class="nav-number">3.4.6.</span> <span class="nav-text">i> 插入标记</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jellyChow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>

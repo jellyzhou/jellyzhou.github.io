@@ -223,6 +223,222 @@
             
               
                 
+                <a class="post-title-link" href="/2016/02/01/Dom-extend/" itemprop="url">
+                  Dom-extend
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-02-01T21:45:34+08:00" content="2016-02-01">
+              2016-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="a-__u9009_u62E9_u7B26API"><a href="#a-__u9009_u62E9_u7B26API" class="headerlink" title="a. 选择符API"></a>a. 选择符API</h4><p>Selectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1<br>的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。</p>
+<h5 id="o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002"><a href="#o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002" class="headerlink" title="o&gt; querySelector(“css选择符”) —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。"></a>o&gt; <code>querySelector(“css选择符”)</code> —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var body = document.querySelector(<span class="string">"body"</span>);</span><br><span class="line">var myDiv = document.querySelector(<span class="string">"#myDiv"</span>);</span><br><span class="line">var selected = document.querySelector(<span class="string">".selected"</span>);</span><br><span class="line">var img = document.querySelector(<span class="string">"img.button"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002"><a href="#o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002" class="headerlink" title="o&gt; querySelectorAll(“css选择符”) —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。"></a>o&gt; <code>querySelectorAll(“css选择符”)</code> —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。</h5><h5 id="o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B"><a href="#o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B" class="headerlink" title="o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 matchesSelector(“CSS 选择符”)。调用元素与该选择符匹配返回true, 否则返回false;"></a>o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 <code>matchesSelector(“CSS 选择符”)</code>。调用元素与该选择符匹配返回true, 否则返回false;</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> matchesSelector(element, selector)&#123;</span><br><span class="line">    <span class="keyword">if</span>(element.matchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.matchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.msMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.mozMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.webkitMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.webkitMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        throw new Error(<span class="string">"Not Supported!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/01/Dom-extend/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/31/Dom/" itemprop="url">
+                  Dom
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-31T19:50:46+08:00" content="2016-01-31">
+              2016-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-_u8282_u70B9_u5C42_u6B21"><a href="#1-_u8282_u70B9_u5C42_u6B21" class="headerlink" title="1.节点层次"></a>1.节点层次</h3><h4 id="a-Node_u7C7B_u578B"><a href="#a-Node_u7C7B_u578B" class="headerlink" title="a.Node类型"></a>a.Node类型</h4><p>JavaScript 中的所有节点类型都继承自 <code>Node</code> 类型.因此所有节点类型都共享着相同的基本属性和方法。<br>对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。</p>
+<h5 id="1_uFF09-_u8282_u70B9_u5173_u7CFB"><a href="#1_uFF09-_u8282_u70B9_u5173_u7CFB" class="headerlink" title="1）.节点关系"></a>1）.节点关系</h5><p>每个节点都有一个childNodes属性，其中保存着一个NodeList对象。<br>NodeList是一组 类数组对象； 用于保存一组有序节点； 有length属性,但是它不是Array的实例；<br>访问NodeList中的节点：[] 或者是 item()<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var firstChildNode = someNode.childNodes[<span class="number">0</span>];</span><br><span class="line">var secondChildNode = someNode.childNodes.item(<span class="number">1</span>);</span><br><span class="line">var count = someNode.childNodes.length;</span><br></pre></td></tr></table></figure></p>
+<p>可以将 <code>NodeList对象</code> 转换成数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>  coverNodelistToArray( nodes )&#123;</span><br><span class="line">    var array = null;</span><br><span class="line">    try&#123;</span><br><span class="line">        array = Array.prototype.slice.call( nodes, <span class="number">0</span> );   // ie8中不能实现， 因此必须手动进行创建数组</span><br><span class="line">    &#125;catch(ex)&#123;</span><br><span class="line">        array = new Array();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( var i = <span class="number">0</span>; i &lt; nodes.length; i++ )&#123;</span><br><span class="line">              array.push( nodes[i] );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="node_u5173_u7CFB_u56FE"><a href="#node_u5173_u7CFB_u56FE" class="headerlink" title="node关系图"></a>node关系图</h6><p> <img src="/assets/blogImg/node-guanxi.png" alt="node关系图" title="node关系图"><br>关系指针都是只读的。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/31/Dom/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/21/function-expression/" itemprop="url">
                   function-expression
                 </a>
@@ -310,6 +526,327 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/19/javascript之继承（原型链）/" itemprop="url">
+                  javascript之继承（原型链）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-19T17:49:33+08:00" content="2016-01-19">
+              2016-01-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-_u539F_u578B_u94FE"><a href="#1-_u539F_u578B_u94FE" class="headerlink" title="1.原型链"></a>1.原型链</h3><p>每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。<br>实现原型代码模式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.property;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    this.subProperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">   <span class="built_in">return</span> this.subProperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance = new subType();</span><br><span class="line">alert(instance.getSuperValue()); // <span class="literal">true</span>;</span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/19/javascript之继承（原型链）/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/16/javascript-Object/" itemprop="url">
+                  javascript创建Object
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-16T20:29:53+08:00" content="2016-01-16">
+              2016-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用Object构造函数和对象字面量都可以创建单个对象，缺点：使用一个借口创建很多对象，会产生很多重复性代码。</p>
+<h3 id="1-_u5DE5_u5382_u6A21_u5F0F"><a href="#1-_u5DE5_u5382_u6A21_u5F0F" class="headerlink" title="1.工厂模式"></a>1.工厂模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createPerson(name, age, job)&#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.name = name;</span><br><span class="line">    o.age = age;</span><br><span class="line">    o.job = job;</span><br><span class="line">    o.sayName = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">      alert(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = createPerson(<span class="string">'xiaoMing'</span>, <span class="number">11</span>, <span class="string">'painter'</span>);</span><br><span class="line">var person2 = createPerson(<span class="string">'xiaomHong'</span>, <span class="number">12</span>, <span class="string">'writter'</span>);</span><br></pre></td></tr></table></figure>
+<p>工厂模式创建多个相似对象，缺点：无法标识其类型<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/16/javascript-Object/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/09/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-09T00:46:00+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/09/hello-world/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -352,7 +889,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -366,7 +903,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>

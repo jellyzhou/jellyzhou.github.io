@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Dom,节点," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chow's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="1.节点层次a.Node类型JavaScript 中的所有节点类型都继承自 Node 类型.因此所有节点类型都共享着相同的基本属性和方法。对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。
+1）.节点关系每个节点都有一个childNodes属性，其中保存着一个NodeList对象。NodeList是一组 类数组对象； 用于保存一组有序节点； 有le">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dom">
+<meta property="og:url" content="http://jellyzhou.github.io/2016/01/31/Dom/index.html">
+<meta property="og:site_name" content="Chow's Blog">
+<meta property="og:description" content="1.节点层次a.Node类型JavaScript 中的所有节点类型都继承自 Node 类型.因此所有节点类型都共享着相同的基本属性和方法。对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。
+1）.节点关系每个节点都有一个childNodes属性，其中保存着一个NodeList对象。NodeList是一组 类数组对象； 用于保存一组有序节点； 有le">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/node-guanxi.png">
+<meta property="og:updated_time" content="2016-01-31T16:21:20.570Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dom">
+<meta name="twitter:description" content="1.节点层次a.Node类型JavaScript 中的所有节点类型都继承自 Node 类型.因此所有节点类型都共享着相同的基本属性和方法。对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。
+1）.节点关系每个节点都有一个childNodes属性，其中保存着一个NodeList对象。NodeList是一组 类数组对象； 用于保存一组有序节点； 有le">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Dom | Chow's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chow's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dom
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-01-31T19:50:46+08:00" content="2016-01-31">
+              2016-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-_u8282_u70B9_u5C42_u6B21"><a href="#1-_u8282_u70B9_u5C42_u6B21" class="headerlink" title="1.节点层次"></a>1.节点层次</h3><h4 id="a-Node_u7C7B_u578B"><a href="#a-Node_u7C7B_u578B" class="headerlink" title="a.Node类型"></a>a.Node类型</h4><p>JavaScript 中的所有节点类型都继承自 <code>Node</code> 类型.因此所有节点类型都共享着相同的基本属性和方法。<br>对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。</p>
+<h5 id="1_uFF09-_u8282_u70B9_u5173_u7CFB"><a href="#1_uFF09-_u8282_u70B9_u5173_u7CFB" class="headerlink" title="1）.节点关系"></a>1）.节点关系</h5><p>每个节点都有一个childNodes属性，其中保存着一个NodeList对象。<br>NodeList是一组 类数组对象； 用于保存一组有序节点； 有length属性,但是它不是Array的实例；<br>访问NodeList中的节点：[] 或者是 item()<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var firstChildNode = someNode.childNodes[<span class="number">0</span>];</span><br><span class="line">var secondChildNode = someNode.childNodes.item(<span class="number">1</span>);</span><br><span class="line">var count = someNode.childNodes.length;</span><br></pre></td></tr></table></figure></p>
+<p>可以将 <code>NodeList对象</code> 转换成数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>  coverNodelistToArray( nodes )&#123;</span><br><span class="line">    var array = null;</span><br><span class="line">    try&#123;</span><br><span class="line">        array = Array.prototype.slice.call( nodes, <span class="number">0</span> );   // ie8中不能实现， 因此必须手动进行创建数组</span><br><span class="line">    &#125;catch(ex)&#123;</span><br><span class="line">        array = new Array();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( var i = <span class="number">0</span>; i &lt; nodes.length; i++ )&#123;</span><br><span class="line">              array.push( nodes[i] );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="node_u5173_u7CFB_u56FE"><a href="#node_u5173_u7CFB_u56FE" class="headerlink" title="node关系图"></a>node关系图</h6><p> <img src="/assets/blogImg/node-guanxi.png" alt="node关系图" title="node关系图"><br>关系指针都是只读的。<br><a id="more"></a></p>
+<h6 id="u64CD_u4F5C_u8282_u70B9"><a href="#u64CD_u4F5C_u8282_u70B9" class="headerlink" title="操作节点"></a>操作节点</h6><p>i&gt; appendChild ： 用于向 <code>childNodes</code> 列表末尾添加一个节点。添加节点后，childNodes 的新增节点、父节点和以前的最后的一个子节点的关系指针都会相应地得到更新。更新完成后，返回新增的节点。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">return</span>Node = someNode.appendChild( newNode );</span><br><span class="line"><span class="built_in">return</span>Node == newNode               // <span class="literal">true</span></span><br><span class="line"><span class="built_in">return</span>Node == someNode.lastChild;  // <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>如果传入到appendChild() 中的节点已经是文档的一部分， 结果该节点从原来的位置将会转移到新位置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">return</span>Node = someNode.appendChild( someNode.firstChild );</span><br><span class="line"><span class="built_in">return</span>Node == someNode.firstChild;  // <span class="literal">false</span></span><br><span class="line"><span class="built_in">return</span>Node == someNode.lastChild;  // <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>ii&gt; insertBefore :  参数一 要插入的节点， 参数二 参考位置的节点。  将会返回插入的节点。 如果参数二为null,那么插入节点将会被添加到最后一个子节点。</p>
+<p>iii&gt; replaceChild :  参数一 要插入的节点， 参数二 要被替换的节点。  将会返回被替换的节点，并从文档中删除。</p>
+<p>v&gt; removeChild ：  要删除的节点将会被返回。 最后这两个方法其实在文档中还存在，只是没有了位置。</p>
+<p>vi&gt; cloneNode :  参数布尔值，表示是否进行深度复制， true 表示深度复制， 包括 <code>本身</code> 和 <code>整个子节点树</code> false 表示浅复制， 只复制 <code>节点本身</code></p>
+<p>vii&gt; normalize : 由于解析器的实现差异，可能会出现文本节点不包含文本（删除它）， 或者接连出现两个文本节点出现（合并为一个文本节点）</p>
+<h4 id="b-Document_u7C7B_u578B"><a href="#b-Document_u7C7B_u578B" class="headerlink" title="b.Document类型"></a>b.Document类型</h4><p>在浏览器中 <code>document对象</code> 是HTMLDocument( 继承自 Document 类型) 的一个实例， 表示整个html页面。  document 是 window 的一个属性</p>
+<p>– nodeType ： 9<br>– nodeName : “#document”<br>– nodeValue : null<br>– parentNode : null</p>
+<p>Document访问其子节点的方式： （1）通过 <code>documentElement</code> 属性， 这个属性始终指向HTML页面中的<html>元素 （2） 通过 <code>childNodes</code><br>(3)document 还有一个 <code>body</code> 属性， 直接指向 <body>元素</body></html></p>
+<p>i&gt; 文档信息<br> – title ： 可访问可修改。<br> – URL ：  包含页面完整的URL（即地址栏中显示的URL）<br> – domain : 只包含页面的域名， 可设置<br> – referrer : 保存着链接到当前页面的那个页面的URL。</p>
+<p> 如果URL中包含一个子域名， 例如 ditu.baidu.com, 那么只能将 domain 设置为 “baidu.com” ( URL中包含 www，也是如此 )。不能将这个属性设置为 URL 中不包含的域，否则出错。</p>
+<p> 由于跨域安全限制， 来自不同子域的页面无法通过 JavaScript 通信。 而通过将每个页面的 document.domain 设置为相同的值，这些页面就可以互相访问对方包含的 JavaScript 对象了。例如， 假设有一个页面加载自 www.wrox.com，其中包含一个内嵌框架，框架内的页面加载自 p2p.wrox.com。 由于 document.domain 字符串不一样，内外两个页面之间无法相互访问对方的 JavaScript 对象。但如 果将这两个页面的 document.domain 值都设置为”wrox.com”，它们之间就可以通信了。</p>
+<p>ii&gt; 查找元素<br>方法： getElementById()  和  getElementsByTagName()</p>
+<p>IE7 及较低版本还为此方法添加了一个有意思的“怪癖”： name 特性与给定 ID 匹配的表单元素（&lt;input&gt;、&lt;textarea&gt;、 &lt;button&gt;及&lt;select&gt;）也会被该方法返回。如果有哪个表单元素的 name 特性等于指定的 ID，而且该元素在文档中位于带有给定 ID 的元素前面，那么 IE 就会返回那个表单元素。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"myElement"</span> value=<span class="string">"Text field"</span>&gt;</span><br><span class="line">&lt;div id=<span class="string">"myElement"</span>&gt;A div&lt;/div&gt; // 结果会返回&lt;input&gt;元素</span><br></pre></td></tr></table></figure></p>
+<p>iii&gt; 文档写入<br>– write() ： 会在文档原样写入<br>– writeIn() ： 在字符串末尾添加一个换行符（ \n ）</p>
+<h2 id="u8FD9_u4E24_u4E2A_u65B9_u6CD5__u5728_u9875_u9762_u88AB_u52A0_u8F7D_u7684_u8FC7_u7A0B_u4E2D_u4F7F_u7528_u3002"><a href="#u8FD9_u4E24_u4E2A_u65B9_u6CD5__u5728_u9875_u9762_u88AB_u52A0_u8F7D_u7684_u8FC7_u7A0B_u4E2D_u4F7F_u7528_u3002" class="headerlink" title="这两个方法 在页面被加载的过程中使用。"></a>这两个方法 在页面被加载的过程中使用。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">      &lt;title&gt;document.write() Example&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;p&gt;The current date and time is:</span><br><span class="line"></span><br><span class="line">        &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">          document.write(<span class="string">"&lt;strong&gt;"</span> + (new Date()).toString() + <span class="string">"&lt;/strong&gt;"</span>);</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>动态地包含外部资源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;document.write() Example <span class="number">2</span>&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">            document.write(<span class="string">"&lt;script type=\"text/javascript\" src=\"file.js\"&gt;"</span> +</span><br><span class="line">            <span class="string">"&lt;/script&gt;"</span>);</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>即使这个文件看起来没错，但字符串”“将被解释为与外部的<script>标签匹配，结果文本”);将会出现在页面中。为避免这个问题，只需加入转义字符\即可</p>
+<p>=================================================================================================================================<br>如果在文档加载结束后再调用 document.write()，那么输出的内容将会重写整个页面</p>
+<p>– open()<br>– close（）</p>
+<h4 id="c-_Element_u7C7B_u578B"><a href="#c-_Element_u7C7B_u578B" class="headerlink" title="c. Element类型"></a>c. Element类型</h4><p>– nodeType : 1<br>– nodeName : 元素的标签名 ( tagName )<br>– nodeValue : null<br>– parentNode : Document 或者 Element</p>
+<p>i&gt; html元素<br>所有 HTML 元素都由 HTMLElement 类型表示。 HTMLElement 类型直接继承自 Element</p>
+<p>– id ：  元素在文档中的唯一标识符<br>– title ：有关元素的附加说明信息，　一般通过工具条显示出来<br>– className ：元素指定的css类。<br>– dir : 元素的方向，值： ltr、 rtl</p>
+<p>ii&gt; 取得特性<br>操作特性方法： getAttribute()、 setAttribute()和 removeAttribute()</p>
+<p>getAttribute()：<br>  （1）传递的特性名与实际的特性名相同： class的值得传 “class” 而不是 “className”<br>  （2）可取自定义特性。根据 HTML5 规范，自定义特性应该加上 data-前缀以便验证。<br>  （3）任何元素的所有特性，也都可以通过 DOM 元素本身的属性来访问<br>  （4）只有公认的（非自定义的）特性才会以属性的形式添加到 DOM对象中，有两类特殊的特性，它们虽然有对应的属性名，但属性的值与通过 getAttribute()返回的值并不<br>相同。<br>      第一类特性就是 style：返回的 style 特性值中包含的是 CSS 文本， 而通过属性来访问它则会返回一个对象。<br>      第二类与众不同的特性是 onclick 这样的事件处理程序。通过 getAttribute()访问，则会返回相应代码的字符串。在访问onclick 属性时，则会返回一个 JavaScript 函数（如果未在元素中指定相应特性，则返回 null） 。</p>
+<p>iii&gt; 设置特性<br>    div.id = “someOtherId”;<br>    div.align = “left”;</p>
+<pre><code>不过，像下面这样为 DOM 元素添加一个自定义的属性，该属性不会自动成为元素的特性。
+
+div.mycolor = &quot;red&quot;;
+alert(div.getAttribute(&quot;mycolor&quot;)); //null（ IE 除外）
+
+这个例子添加了一个名为 mycolor 的属性并将它的值设置为&quot;red&quot;。在大多数浏览器中，这个属性都不会自动变成元素的特性，因此想通过getAttribute()取得同名特性的值，结果会返回 null。可是，自定义属性在 IE 中会被当作元素的特性，反之亦然。
+</code></pre><p>v&gt; 删除特性<br>   removeAttribute()，这个方法用于彻底删除元素的特性。</p>
+<p>vi&gt; attributes属性</p>
+<p>  Element 类型是使用 attributes 属性的唯一一个 DOM 节点类型。attributes 属性中包含一个NamedNodeMap，与 NodeList类似，也是一个“动态”的集合。元素的每一个特性都由一个 Attr 节点表示，每个节点都保存在 NamedNodeMap 对象中。</p>
+<p>  遍历元素的特性：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> outputAttributes( element )&#123;</span><br><span class="line">    var pairs = new Array(),</span><br><span class="line">        attrName, attrValue, i, len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( i = <span class="number">0</span>, len = element.attributes.length; i &lt; len; i ++ )&#123;</span><br><span class="line">        attrName = element.attributes[i].nodeName;</span><br><span class="line">        attrValue = element.attributes[i].nodeValue;</span><br><span class="line"></span><br><span class="line">        /*pairs.push(attrName + <span class="string">"=\""</span> + nodeValue + <span class="string">"\""</span> );*/</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(element.attributes[i].specified)&#123;</span><br><span class="line">            pairs.push(attrName + <span class="string">"=\""</span> + nodeValue + <span class="string">"\""</span> );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> pairs.join(<span class="string">" "</span>); // IE7 及更早的版本会返回 HTML 元素中所有可能的特性，包括没有指定的特性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  针对 IE7 及更早版本中存在的问题，可以对上面的函数加以改进，让它只返回指定的特性。每个特性节点都有一个名为 specified 的属性，这个属性的值如果为 true，则意味着要么是在 HTML 中指  定了相应特性，要么是通过 setAttribute()方法设置了该特性。在 IE 中，所有未设置过的特性的该属性值都为 false，而在其他浏览器中根本不会为这类特性生成对应的特性节点（因此，在这些浏览器  中，任何特性节点的 specified 值始终为 true）。</p>
+<p>vii&gt; 创建元素<br>  document.createElement(“标签名”)</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var div = document.createElement(<span class="string">"&lt;div id=\"myNewDiv\" class=\"box\"&gt;&lt;/div &gt;"</span>)</span><br></pre></td></tr></table></figure>
+<p>  这种方式有助于避开在 IE7 及更早版本中动态创建元素的某些问题<br>  – 不能设置动态创建的<iframe>元素的 name 特性。<br>  – 不能通过表单的 reset()方法重设动态创建的<input>元素<br>  – 动态创建的 type 特性值为”reset”的<buttou>元素重设不了表单<br>  – 动态创建的一批 name 相同的单选按钮彼此毫无关系。 name 值相同的一组单选按钮本来应该用于表示同一选项的不同值，但动态创建的一批这种单选按钮之间却没有这种关系</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###### 其他浏览器都不支持这种用法。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (client.browser.ie &amp;&amp; client.browser.ie &lt;=<span class="number">7</span>)&#123;</span><br><span class="line">    //创建一个带 name 特性的 iframe 元素</span><br><span class="line">    var iframe = document.createElement(<span class="string">"&lt;iframe name=\"myframe\"&gt;&lt;/iframe&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    //创建 input 元素</span><br><span class="line">    var input = document.createElement(<span class="string">"&lt;input type=\"checkbox\"&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    //创建 button 元素</span><br><span class="line">    var button = document.createElement(<span class="string">"&lt;button type=\"reset\"&gt;&lt;/button&gt;"</span>);</span><br><span class="line"></span><br><span class="line">    //创建单选按钮</span><br><span class="line">    var radio1 = document.createElement(<span class="string">"&lt;input type=\"radio\" name=\"choice\" "</span>＋ <span class="string">"value=\"1\"&gt;"</span>);</span><br><span class="line">    var radio2 = document.createElement(<span class="string">"&lt;input type=\"radio\" name=\"choice\" "</span>＋ <span class="string">"value=\"2\"&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<p>viii&gt; 元素的子节点<br>  元 素 的childNodes 属性中包含了它的所有子节点，这些子节点有可能是元素、文本节点、注释或处理指令。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=<span class="string">"myList"</span>&gt;</span><br><span class="line">    &lt;li&gt;Item <span class="number">1</span>&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;Item <span class="number">2</span>&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;Item <span class="number">3</span>&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>  如果是 IE 来解析这些代码，那么<ul>元素会有 3 个子节点，分别是 3 个<li>元素。但如果是在其他浏览器中， <ul>元素都会有 7 个元素，包括 3 个<li>元素和 4 个文本节点（表示<li>元素之间的空白符）。如果像下面这样将元素间的空白符删除，那么所有浏览器都会返回相同数目的子节点.</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=<span class="string">"myList"</span>&gt;&lt;li&gt;Item <span class="number">1</span>&lt;/li&gt;&lt;li&gt;Item <span class="number">2</span>&lt;/li&gt;&lt;li&gt;Item <span class="number">3</span>&lt;/li&gt;&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="d-_Text_u7C7B_u578B"><a href="#d-_Text_u7C7B_u578B" class="headerlink" title="d. Text类型"></a>d. Text类型</h4><p>  – nodeType : 3<br>  – nodeName : null<br>  – nodeValue : 节点包含的文本 (data属性也可以)<br>  – parentNode :　Element元素</p>
+<p>length属性：节点中字符的数目。</p>
+<p>在默认情况下，每个可以包含内容的元素最多只能有一个文本节点，而且确实鼻血有内容存在。</p>
+<p>i&gt; 创建文本节点  document.createTextNode()</p>
+<p>i&gt; 规范文本节点  normalize()<br>  如果在一个包含两个或多个文本节点的父元素上调用 normalize()方法，则会将所有文本节点合并成一个节点，结果节点的 nodeValue 等于将合并前每个文本节点的 nodeValue 值拼接起来的值。</p>
+<p>i&gt; 分割文本节点  splitText(索引值)<br>  原来的文本节点将包含从开始到指定位置之前的内容，新文本节点将包含剩下的文本。这个方法会返回一个新文本节点，该节点与原节点的parentNode 相同。</p>
+<h4 id="e-_DocumentFragment_u7C7B_u578B"><a href="#e-_DocumentFragment_u7C7B_u578B" class="headerlink" title="e. DocumentFragment类型"></a>e. DocumentFragment类型</h4><p>– nodeType : 11<br>– nodeName : “#document-Fragment”<br>– nodeValue : null<br>– parentNode : null</p>
+<p>var fragment = document.createDocumentFragment();</p>
+<h4 id="f-_Dom_u64CD_u4F5C_u6280_u672F"><a href="#f-_Dom_u64CD_u4F5C_u6280_u672F" class="headerlink" title="f. Dom操作技术"></a>f. Dom操作技术</h4><p>i&gt; 动态脚本<br>  在页面加载时不存在，但在将来的某一时刻通过修改DOM动态添加的脚本。<br>  通过src特性包含外部js文件：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> loadScript(url)&#123;</span><br><span class="line">    var script = document.createElement(<span class="string">"script"</span>);</span><br><span class="line">    script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">    script.src = url;</span><br><span class="line">    document.body.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadScript(<span class="string">"client.js"</span>);</span><br></pre></td></tr></table></figure>
+<p>  行内方式：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> loadScriptString( code )&#123;</span><br><span class="line">    var script = document.createElement(<span class="string">"script"</span>);</span><br><span class="line">    script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">    try&#123;</span><br><span class="line">        script.appendChild( document.createTextNode(code) );</span><br><span class="line">    &#125;catch(ex)&#123;</span><br><span class="line">        script.text = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    document.body.appendChild(<span class="string">"script"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loadScriptString(<span class="string">'function sayHi()&#123;alert("hello!");&#125;'</span>);</span><br></pre></td></tr></table></figure>
+<p>  i&gt; 动态样式：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> loadStyle(url)&#123;</span><br><span class="line">    var link = document.createElement(<span class="string">"link"</span>);</span><br><span class="line">    link.rel = <span class="string">"stylesheet"</span>;</span><br><span class="line">    link.type = <span class="string">"text/css"</span>;</span><br><span class="line">    link.href = url;</span><br><span class="line"></span><br><span class="line">    var head = document.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</span><br><span class="line">    head.appendChild(link);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> loadStyleString(css)&#123;</span><br><span class="line">    var style = document.createElement(<span class="string">"link"</span>);</span><br><span class="line">    style.rel = <span class="string">"stylesheet"</span>;</span><br><span class="line">    style.type = <span class="string">"text/css"</span>;</span><br><span class="line"></span><br><span class="line">    try&#123;</span><br><span class="line">        style.appendChild(document.createTextNode(css));</span><br><span class="line">    &#125;catch(ex)&#123;</span><br><span class="line">        style.stylesheet.cssText = css;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var head = document.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>];</span><br><span class="line">    head.appendChild(style);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</script></p>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dom/" rel="tag">#Dom</a>
+          
+            <a href="/tags/节点/" rel="tag">#节点</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/21/function-expression/" rel="next" title="function-expression">
+                <i class="fa fa-chevron-left"></i> function-expression
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/01/Dom-extend/" rel="prev" title="Dom-extend">
+                Dom-extend <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="jellyChow" />
+          <p class="site-author-name" itemprop="name">jellyChow</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分類</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_u8282_u70B9_u5C42_u6B21"><span class="nav-number">1.</span> <span class="nav-text">1.节点层次</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-Node_u7C7B_u578B"><span class="nav-number">1.1.</span> <span class="nav-text">a.Node类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1_uFF09-_u8282_u70B9_u5173_u7CFB"><span class="nav-number">1.1.1.</span> <span class="nav-text">1）.节点关系</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#node_u5173_u7CFB_u56FE"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">node关系图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#u64CD_u4F5C_u8282_u70B9"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">操作节点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-Document_u7C7B_u578B"><span class="nav-number">1.2.</span> <span class="nav-text">b.Document类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u8FD9_u4E24_u4E2A_u65B9_u6CD5__u5728_u9875_u9762_u88AB_u52A0_u8F7D_u7684_u8FC7_u7A0B_u4E2D_u4F7F_u7528_u3002"><span class="nav-number"></span> <span class="nav-text">这两个方法 在页面被加载的过程中使用。</span></a></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jellyChow</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
