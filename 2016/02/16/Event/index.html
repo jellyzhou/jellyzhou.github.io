@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="event," />
 
 
 
@@ -59,15 +59,19 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chow's Blog">
-<meta property="og:url" content="http://jellyzhou.github.io/index.html">
+<meta name="description" content="事件流i&amp;gt; 事件冒泡IE的事件流叫事件冒泡,即事件最开始有最具体的元素接收，然后逐级传播到较为不具体的节点（文档）。IE9、 Firefox、 Chrome 和 Safari 则将事件一直冒泡到 window 对象。12345678910&amp;lt;!Docuemnt&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;title&amp;gt;事件冒泡&amp;lt;/title&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Event">
+<meta property="og:url" content="http://jellyzhou.github.io/2016/02/16/Event/index.html">
 <meta property="og:site_name" content="Chow's Blog">
-<meta property="og:description">
+<meta property="og:description" content="事件流i&amp;gt; 事件冒泡IE的事件流叫事件冒泡,即事件最开始有最具体的元素接收，然后逐级传播到较为不具体的节点（文档）。IE9、 Firefox、 Chrome 和 Safari 则将事件一直冒泡到 window 对象。12345678910&amp;lt;!Docuemnt&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;title&amp;gt;事件冒泡&amp;lt;/title&amp;g">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/DOM-Event.png">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/Event's-attribute-&-method.jpg">
+<meta property="og:image" content="http://jellyzhou.github.io/assets/blogImg/ieEvent.png">
+<meta property="og:updated_time" content="2016-02-19T08:15:05.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chow's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Event">
+<meta name="twitter:description" content="事件流i&amp;gt; 事件冒泡IE的事件流叫事件冒泡,即事件最开始有最具体的元素接收，然后逐级传播到较为不具体的节点（文档）。IE9、 Firefox、 Chrome 和 Safari 则将事件一直冒泡到 window 对象。12345678910&amp;lt;!Docuemnt&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;      &amp;lt;title&amp;gt;事件冒泡&amp;lt;/title&amp;g">
 
 
 
@@ -85,7 +89,7 @@
   };
 </script>
 
-  <title> Chow's Blog </title>
+  <title> Event | Chow's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -104,9 +108,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -185,15 +187,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-
-    
-      
 
   
   
@@ -213,10 +209,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/02/16/Event/" itemprop="url">
-                  Event
-                </a>
+                Event
               
             
           </h1>
@@ -273,9 +266,7 @@
       
 
       
-        
-          
-            <h3 id="u4E8B_u4EF6_u6D41"><a href="#u4E8B_u4EF6_u6D41" class="headerlink" title="事件流"></a>事件流</h3><h4 id="i_26gt_3B__u4E8B_u4EF6_u5192_u6CE1"><a href="#i_26gt_3B__u4E8B_u4EF6_u5192_u6CE1" class="headerlink" title="i&gt; 事件冒泡"></a>i&gt; 事件冒泡</h4><p>IE的事件流叫<code>事件冒泡</code>,即事件最开始有最具体的元素接收，然后逐级传播到较为不具体的节点（文档）。IE9、 Firefox、 Chrome 和 Safari 则将事件一直<br>冒泡到 window 对象。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!Docuemnt&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">      &lt;title&gt;事件冒泡&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;div&gt;来点死我吧&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">如果你点击了div，那么事件将会按着 &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;--&gt; &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; --&gt; &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; --&gt; &lt;code&gt;document&lt;/code&gt; 这样子传播</span><br></pre></td></tr></table></figure></p>
+        <h3 id="u4E8B_u4EF6_u6D41"><a href="#u4E8B_u4EF6_u6D41" class="headerlink" title="事件流"></a>事件流</h3><h4 id="i_26gt_3B__u4E8B_u4EF6_u5192_u6CE1"><a href="#i_26gt_3B__u4E8B_u4EF6_u5192_u6CE1" class="headerlink" title="i&gt; 事件冒泡"></a>i&gt; 事件冒泡</h4><p>IE的事件流叫<code>事件冒泡</code>,即事件最开始有最具体的元素接收，然后逐级传播到较为不具体的节点（文档）。IE9、 Firefox、 Chrome 和 Safari 则将事件一直<br>冒泡到 window 对象。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!Docuemnt&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">      &lt;title&gt;事件冒泡&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">      &lt;div&gt;来点死我吧&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">如果你点击了div，那么事件将会按着 &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;--&gt; &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; --&gt; &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; --&gt; &lt;code&gt;document&lt;/code&gt; 这样子传播</span><br></pre></td></tr></table></figure></p>
 <h4 id="i_26gt_3B__u4E8B_u4EF6_u6355_u83B7"><a href="#i_26gt_3B__u4E8B_u4EF6_u6355_u83B7" class="headerlink" title="i&gt; 事件捕获"></a>i&gt; 事件捕获</h4><p>事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。如果仍以前面例子的话，顺序会是: <code>document</code> –&gt; <code>&lt;html&gt;</code> –&gt; <code>&lt;body&gt;</code> –&gt; <code>&lt;div&gt;</code><br>IE9、 Safari、 Chrome、 Opera和 Firefox 目前也都支持这种事件流模型。</p>
 <h4 id="i_26gt_3B_DOM_u4E8B_u4EF6_u6D41"><a href="#i_26gt_3B_DOM_u4E8B_u4EF6_u6D41" class="headerlink" title="i&gt; DOM事件流"></a>i&gt; DOM事件流</h4><p>“DOM2级事件”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段，可以在这个阶段对事件做出响应。</p>
 <p><img src="/assets/blogImg/DOM-Event.png" alt="DOM事件流" title="DOM事件流"><br>在DOM事件流中，实际的目标（<code>&lt;div&gt;元素</code>）在<code>捕获阶段</code>不会接收到事件。这意味着在<code>捕获阶段</code>，事件从 <code>document</code> 到 <code>&lt;html&gt;</code> 再到 <code>&lt;body&gt;</code> 后就停止了。<br>下一个阶段：<code>“处于目标阶段”</code>,于是事件在<code>&lt;div&gt;</code>上发生，并在事件冒泡中被看成是一部分<br>最后一个阶段： <code>冒泡阶段</code>，事件又传回文档。</p>
@@ -396,576 +387,45 @@ removeHandler : function( element, eventName, handler){
 <li>两个手指放在屏幕上且页面随手指移动而滚动时会触发 mousewheel 和 scroll 事件。</li>
 </ul>
 <h3 id="u952E_u76D8_u4E0E_u6587_u672C_u4E8B_u4EF6"><a href="#u952E_u76D8_u4E0E_u6587_u672C_u4E8B_u4EF6" class="headerlink" title="键盘与文本事件"></a>键盘与文本事件</h3></script></p>
-          
-        
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/15/DOM2-DOM3/" itemprop="url">
-                  DOM2 和 DOM3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-02-15T17:39:14+08:00" content="2016-02-15">
-              2016-02-15
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
+            <a href="/tags/event/" rel="tag">#event</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="u6837_u5F0F"><a href="#u6837_u5F0F" class="headerlink" title="样式"></a>样式</h3><p>有三种：通过&lt;link/&gt;包含外部样式表文件、使用&lt;style/&gt;元素定义嵌入式样式、使用style特性定义针对特定元素的样式。</p>
-<h4 id="i_26gt_3B_u8BBF_u95EE_u6837_u5F0F_u8868"><a href="#i_26gt_3B_u8BBF_u95EE_u6837_u5F0F_u8868" class="headerlink" title="i&gt;访问样式表"></a>i&gt;访问样式表</h4><p>任何支持<code>style特性</code>的HTML元素在js中都有一个对应的<code>style属性</code>。</p>
-<ul>
-<li>这个<code>style对象</code>是CSSStyleDeclaration的实例，包含着通过HTML的<code>style特性</code>指定的所有样式信息，但不包含其它两种。</li>
-<li>在<code>style特性</code>中指定的任何<code>CSS属性</code>都将表现为这个<code>style对象</code>的相应属性。</li>
-<li>对于有短横线的<code>css属性名</code>，必须将其转换成骆驼峰大小写形式，才能通过Javscript来访问。</li>
-<li>多数都可以转换，其中少数不能： <code>float</code> ===&gt;  <code>cssFloat</code> （Firefox、 Safari、 Opera 和 Chrome 都支持这个属性），而IE支持<code>styleFloat</code></li>
-<li>在标准模式下，所有度量值都必须带一个度量单位<code>20px</code>，混杂模式下则不带单位。<code>20</code></li>
-<li>如果没有为元素设置<code>style特性</code>，<code>style对象</code>中会带有一些不能准确的反映这个元素的一些默认值。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/15/DOM2-DOM3/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/15/DOM2-DOM3/" rel="next" title="DOM2 和 DOM3">
+                <i class="fa fa-chevron-left"></i> DOM2 和 DOM3
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/01/Dom-extend/" itemprop="url">
-                  Dom-extend
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-02-01T21:45:34+08:00" content="2016-02-01">
-              2016-02-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="a-__u9009_u62E9_u7B26API"><a href="#a-__u9009_u62E9_u7B26API" class="headerlink" title="a. 选择符API"></a>a. 选择符API</h4><p>Selectors API Level 1 的核心是两个方法： querySelector()和 querySelectorAll()。目前已完全支持 Selectors API Level 1<br>的浏览器有 IE 8+、 Firefox 3.5+、 Safari 3.1+、 Chrome 和 Opera 10+。</p>
-<h5 id="o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002"><a href="#o_26gt_3B_querySelector_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u7B2C_u4E00_u4E2A_u5143_u7D20_uFF0C_u82E5_u6CA1_u6709_u5339_u914D_u8FD4_u56DEnull_u3002" class="headerlink" title="o&gt; querySelector(“css选择符”) —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。"></a>o&gt; <code>querySelector(“css选择符”)</code> —&gt; 返回匹配选择符的第一个元素，若没有匹配返回null。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var body = document.querySelector(<span class="string">"body"</span>);</span><br><span class="line">var myDiv = document.querySelector(<span class="string">"#myDiv"</span>);</span><br><span class="line">var selected = document.querySelector(<span class="string">".selected"</span>);</span><br><span class="line">var img = document.querySelector(<span class="string">"img.button"</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002"><a href="#o_26gt_3B_querySelectorAll_28_u201Ccss_u9009_u62E9_u7B26_u201D_29__u2014-_26gt_3B__u8FD4_u56DE_u5339_u914D_u9009_u62E9_u7B26_u7684_u6240_u6709_u5143_u7D20_uFF0C__u8FD4_u56DE_u7684_u662F_u4E00_u4E2ANodeList_u7684_u5B9E_u4F8B_u3002" class="headerlink" title="o&gt; querySelectorAll(“css选择符”) —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。"></a>o&gt; <code>querySelectorAll(“css选择符”)</code> —-&gt; 返回匹配选择符的所有元素， 返回的是一个NodeList的实例。</h5><h5 id="o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B"><a href="#o_26gt_3B_Selectors_API_Level_2__u89C4_u8303_u4E3A_Element__u7C7B_u578B_u65B0_u589E_u4E86_u4E00_u4E2A_u65B9_u6CD5_matchesSelector_28_u201CCSS__u9009_u62E9_u7B26_u201D_29_u3002_u8C03_u7528_u5143_u7D20_u4E0E_u8BE5_u9009_u62E9_u7B26_u5339_u914D_u8FD4_u56DEtrue_2C__u5426_u5219_u8FD4_u56DEfalse_3B" class="headerlink" title="o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 matchesSelector(“CSS 选择符”)。调用元素与该选择符匹配返回true, 否则返回false;"></a>o&gt; Selectors API Level 2 规范为 Element 类型新增了一个方法 <code>matchesSelector(“CSS 选择符”)</code>。调用元素与该选择符匹配返回true, 否则返回false;</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> matchesSelector(element, selector)&#123;</span><br><span class="line">    <span class="keyword">if</span>(element.matchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.matchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.msMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.mozMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.msMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.webkitMatchesSelector)&#123;</span><br><span class="line">        <span class="built_in">return</span> element.webkitMatchesSelector(selector);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        throw new Error(<span class="string">"Not Supported!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/01/Dom-extend/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/31/Dom/" itemprop="url">
-                  Dom
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-31T19:50:46+08:00" content="2016-01-31">
-              2016-01-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="1-_u8282_u70B9_u5C42_u6B21"><a href="#1-_u8282_u70B9_u5C42_u6B21" class="headerlink" title="1.节点层次"></a>1.节点层次</h3><h4 id="a-Node_u7C7B_u578B"><a href="#a-Node_u7C7B_u578B" class="headerlink" title="a.Node类型"></a>a.Node类型</h4><p>JavaScript 中的所有节点类型都继承自 <code>Node</code> 类型.因此所有节点类型都共享着相同的基本属性和方法。<br>对于元素节点， nodeName中始终保存的都是元素的标签名， 而nodeValue始终为null。</p>
-<h5 id="1_uFF09-_u8282_u70B9_u5173_u7CFB"><a href="#1_uFF09-_u8282_u70B9_u5173_u7CFB" class="headerlink" title="1）.节点关系"></a>1）.节点关系</h5><p>每个节点都有一个childNodes属性，其中保存着一个NodeList对象。<br>NodeList是一组 类数组对象； 用于保存一组有序节点； 有length属性,但是它不是Array的实例；<br>访问NodeList中的节点：[] 或者是 item()<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var firstChildNode = someNode.childNodes[<span class="number">0</span>];</span><br><span class="line">var secondChildNode = someNode.childNodes.item(<span class="number">1</span>);</span><br><span class="line">var count = someNode.childNodes.length;</span><br></pre></td></tr></table></figure></p>
-<p>可以将 <code>NodeList对象</code> 转换成数组。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>  coverNodelistToArray( nodes )&#123;</span><br><span class="line">    var array = null;</span><br><span class="line">    try&#123;</span><br><span class="line">        array = Array.prototype.slice.call( nodes, <span class="number">0</span> );   // ie8中不能实现， 因此必须手动进行创建数组</span><br><span class="line">    &#125;catch(ex)&#123;</span><br><span class="line">        array = new Array();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>( var i = <span class="number">0</span>; i &lt; nodes.length; i++ )&#123;</span><br><span class="line">              array.push( nodes[i] );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="node_u5173_u7CFB_u56FE"><a href="#node_u5173_u7CFB_u56FE" class="headerlink" title="node关系图"></a>node关系图</h6><p> <img src="/assets/blogImg/node-guanxi.png" alt="node关系图" title="node关系图"><br>关系指针都是只读的。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/31/Dom/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/21/function-expression/" itemprop="url">
-                  function-expression
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-21T23:13:14+08:00" content="2016-01-21">
-              2016-01-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-_u9012_u5F52"><a href="#1-_u9012_u5F52" class="headerlink" title="1.递归"></a>1.递归</h3><p>递归函数实在一个函数调用名字来调用自身的情况下构成的。经典递归函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> factorial(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * factorial(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>虽然看起来没问题，但是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var anotherFactorial = factorial;</span><br><span class="line">factorial = null;</span><br><span class="line">alert(anotherFactorial(<span class="number">5</span>));  // error，因为anotherFactorial函数重的factorial已设置为null。</span><br></pre></td></tr></table></figure></p>
-<p>解决方法： arguments.callee代表正在执行的函数指针,但是在严格模式下会出错。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> factorial(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * arguments.callee(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>解决办法：可以使用命名函数表达式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var factorial = (<span class="keyword">function</span> f(num)&#123;</span><br><span class="line">    <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> num * f(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-__u95ED_u5305"><a href="#2-__u95ED_u5305" class="headerlink" title="2. 闭包"></a>2. 闭包</h3><p>闭包是有权访问另外一个函数作用域中变量的函数。常见创建方式就是在一个函数中创建另外一个函数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createComparisonFunction(propertyName) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> <span class="keyword">function</span>(object1, object2)&#123;</span><br><span class="line">        var value1 = object1[propertyName];</span><br><span class="line">        var value2 = object2[propertyName];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (value1 &lt; value2)&#123;</span><br><span class="line">            <span class="built_in">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2)&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当某个函数被调用时，会创建一个执行环境及相应的作用域链。然后使用arguments和其他命名参数来初始化函数活动对象。但在作用域中外部函数活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位，……直至作为作用于链的全局环境。</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/19/javascript之继承（原型链）/" itemprop="url">
-                  javascript之继承（原型链）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-01-19T17:49:33+08:00" content="2016-01-19">
-              2016-01-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="1-_u539F_u578B_u94FE"><a href="#1-_u539F_u578B_u94FE" class="headerlink" title="1.原型链"></a>1.原型链</h3><p>每个构造函数都有一个原型对象，原型对象含有一个指向构造函数的指针，而实例包含一个指向原型对象的内部指针。将原型对象等于另一个类型的实例，那么此时的原型对象将包含一个指向另一个原型的指针，相应地另外一个原型中包含着一个指向另外一个构造函数的指针。假如另一个原型又是另外一个构造函数的实例，将依序前面所述关系，层层递进，就构成了实例与原型的链条。<br>实现原型代码模式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SuperType</span></span>()&#123;</span><br><span class="line">    this.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.property;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">SubType</span></span>()&#123;</span><br><span class="line">    this.subProperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">   <span class="built_in">return</span> this.subProperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance = new subType();</span><br><span class="line">alert(instance.getSuperValue()); // <span class="literal">true</span>;</span><br></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/19/javascript之继承（原型链）/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -973,6 +433,10 @@ removeHandler : function( element, eventName, handler){
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -992,8 +456,17 @@ removeHandler : function( element, eventName, handler){
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -1047,6 +520,23 @@ removeHandler : function( element, eventName, handler){
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8B_u4EF6_u6D41"><span class="nav-number">1.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B__u4E8B_u4EF6_u5192_u6CE1"><span class="nav-number">1.1.</span> <span class="nav-text">i> 事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B__u4E8B_u4EF6_u6355_u83B7"><span class="nav-number">1.2.</span> <span class="nav-text">i> 事件捕获</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_DOM_u4E8B_u4EF6_u6D41"><span class="nav-number">1.3.</span> <span class="nav-text">i> DOM事件流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8B_u4EF6_u5904_u7406_u7A0B_u5E8F"><span class="nav-number">2.</span> <span class="nav-text">事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_DOM0_u7EA7_u4E8B_u4EF6_u5904_u7406_u7A0B_u5E8F"><span class="nav-number">2.1.</span> <span class="nav-text">i> DOM0级事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_DOM2_u4E8B_u4EF6_u5904_u7406_u7A0B_u5E8F"><span class="nav-number">2.2.</span> <span class="nav-text">i> DOM2事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_IE_u4E8B_u4EF6_u5904_u7406_u7A0B_u5E8F"><span class="nav-number">2.3.</span> <span class="nav-text">i> IE事件处理程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B__u8DE8_u6D4F_u89C8_u5668_u7684_u4E8B_u4EF6_u5904_u7406_u7A0B_u5E8F_u3002"><span class="nav-number">2.4.</span> <span class="nav-text">i> 跨浏览器的事件处理程序。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8B_u4EF6_u5BF9_u8C61_Event"><span class="nav-number">3.</span> <span class="nav-text">事件对象 Event</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_preventDefault_28_29"><span class="nav-number">3.1.</span> <span class="nav-text">i> preventDefault()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3B_stopPropagation_28_29"><span class="nav-number">3.2.</span> <span class="nav-text">i> stopPropagation()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE_u4E2D_u7684_u4E8B_u4EF6_u5BF9_u8C61"><span class="nav-number">4.</span> <span class="nav-text">IE中的事件对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IE__u7684_event__u5BF9_u8C61_u76F8_u5173_u7684_u5C5E_u6027_u548C_u65B9_u6CD5_u3002"><span class="nav-number">4.1.</span> <span class="nav-text">IE 的 event 对象相关的属性和方法。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E8B_u4EF6_u7C7B_u578B"><span class="nav-number">5.</span> <span class="nav-text">事件类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#i_26gt_3BUI_u4E8B_u4EF6__uFF1A__u6307_u7684_u662F_u90A3_u4E9B_u4E0D_u4E00_u5B9A_u4E0E_u7528_u6237_u64CD_u4F5C_u6709_u5173_u7684_u4E8B_u4EF6_u3002"><span class="nav-number">5.1.</span> <span class="nav-text">i>UI事件 ： 指的是那些不一定与用户操作有关的事件。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#img_u5143_u7D20"><span class="nav-number">5.1.1.</span> <span class="nav-text">img元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#script_u5143_u7D20"><span class="nav-number">5.1.2.</span> <span class="nav-text">script元素</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -1121,6 +611,167 @@ removeHandler : function( element, eventName, handler){
   
 
   
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 
